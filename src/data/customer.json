@@ -1,0 +1,21 @@
+{
+  "id": "cust-001",
+  "name": "Mariana Silva",
+  "email": "mariana.silva@ecoa.com.br",
+  "phone": "(11) 98765-4321",
+  "avatar": "https://lh3.googleusercontent.com/aida-public/AB6AXuBwswi99uVAm5hscE3njXFbOBjpATd7WjgAt-OmhT4E7yAljIonCi5EeQkd_Oxv9nUtk20i2Xwd0NqLCkzNvyeaXDvOTbObg4o4EHatj6nwBH0laXX7mdwOGdlMANJMx8Z7hSD2FAbLzPj_mRjfM-wco_h1LurcHmBrxumYZ-bKs4zI_UMG2Y_eqbF2_rEAZpZvf251x0waxZOGMGhbj9oTw88vj358DB5AXxHwbkPKrAdP94kq5dQ5",
+  "address": {
+    "street": "Rua Harmonia, 450",
+    "neighborhood": "Vila Madalena",
+    "city": "São Paulo",
+    "state": "SP",
+    "zipCode": "05435-000",
+    "complement": "Apto 82"
+  },
+  "impactMetrics": {
+    "waterSavedLiters": 15400,
+    "co2AvoidedKg": 35.2,
+    "circularPiecesAdopted": 6
+  },
+  "favorites": ["prod-1", "prod-3"]
+}

@@ -1,0 +1,10 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Inner Arch -->
+  <path id="arch-inner" d="M 77.94,132.24 A 28,28 0 1,1 122.06,132.24" fill="none" stroke="#3A4D39" stroke-width="12.5" stroke-linecap="round" />
+  <!-- Mid Arch -->
+  <path id="arch-mid" d="M 62.96,143.94 A 47,47 0 1,1 137.04,143.94" fill="none" stroke="#3A4D39" stroke-width="12.5" stroke-linecap="round" />
+  <!-- Outer Arch -->
+  <path id="arch-outer" d="M 47.99,155.63 A 66,66 0 1,1 152.01,155.63" fill="none" stroke="#3A4D39" stroke-width="12.5" stroke-linecap="round" />
+  <!-- Hook -->
+  <path id="hanger-hook" d="M 125,62 L 140,44 C 146,36 160,34 163,45 C 165,56 153,65 145,71" fill="none" stroke="#3A4D39" stroke-width="12.5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>
