@@ -5,6 +5,7 @@ import { useCartStore } from '@/stores/cart'
 import { useProductsStore } from '@/stores/products'
 import { useCustomerStore } from '@/stores/customer'
 import EcoaLogo from '@/components/common/EcoaLogo.vue'
+import CategoryDropdown from '@/components/common/CategoryDropdown.vue'
 
 const router = useRouter()
 const cartStore = useCartStore()
@@ -13,6 +14,8 @@ const customerStore = useCustomerStore()
 
 const isSearchOpen = ref(false)
 const searchInput = ref('')
+const isCategoryDropdownOpen = ref(false)
+let dropdownTimeout = null
 
 function handleSearchSubmit() {
   if (searchInput.value.trim()) {
@@ -24,6 +27,25 @@ function handleSearchSubmit() {
 
 function toggleSearch() {
   isSearchOpen.value = !isSearchOpen.value
+}
+
+function handleCatalogMouseEnter() {
+  if (dropdownTimeout) clearTimeout(dropdownTimeout)
+  isCategoryDropdownOpen.value = true
+}
+
+function handleCatalogMouseLeave() {
+  dropdownTimeout = setTimeout(() => {
+    isCategoryDropdownOpen.value = false
+  }, 250)
+}
+
+function toggleCategoryDropdown() {
+  isCategoryDropdownOpen.value = !isCategoryDropdownOpen.value
+}
+
+function closeDropdown() {
+  isCategoryDropdownOpen.value = false
 }
 </script>
 
@@ -41,7 +63,7 @@ function toggleSearch() {
         </router-link>
       </div>
 
-      <!-- Center Desktop Navigation Links (Início, Garimpo, Catálogo) -->
+      <!-- Center Desktop Navigation Links (Início, Garimpo, Catálogo com Dropdown) -->
       <nav class="hidden md:flex items-center gap-8">
         <router-link
           to="/"
@@ -57,16 +79,40 @@ function toggleSearch() {
         >
           Garimpo
         </router-link>
-        <router-link
-          to="/produtos"
-          class="font-label text-sm uppercase tracking-wider text-walnut hover:text-primary transition-colors py-1"
-          active-class="text-primary font-semibold border-b-2 border-primary"
+
+        <!-- Catálogo Link with Category Dropdown -->
+        <div
+          class="relative py-1"
+          @mouseenter="handleCatalogMouseEnter"
+          @mouseleave="handleCatalogMouseLeave"
         >
-          Catálogo
-        </router-link>
+          <div class="flex items-center gap-1">
+            <router-link
+              to="/produtos"
+              class="font-label text-sm uppercase tracking-wider text-walnut hover:text-primary transition-colors inline-flex items-center gap-1"
+              active-class="text-primary font-semibold border-b-2 border-primary"
+            >
+              <span>Catálogo</span>
+            </router-link>
+            <button
+              @click.stop="toggleCategoryDropdown"
+              class="p-0.5 text-walnut hover:text-primary transition-transform duration-200"
+              :class="{ 'rotate-180 text-primary': isCategoryDropdownOpen }"
+              aria-label="Abrir menu de categorias"
+            >
+              <span class="material-symbols-outlined text-[18px]">expand_more</span>
+            </button>
+          </div>
+
+          <!-- Dropdown Menu Component -->
+          <CategoryDropdown
+            :is-open="isCategoryDropdownOpen"
+            @close="closeDropdown"
+          />
+        </div>
       </nav>
 
-      <!-- Right Desktop Actions: Search, Meu Impacto & Sacola -->
+      <!-- Right Desktop Actions: Search, Meu Impacto, Favoritos & Sacola -->
       <div class="flex items-center gap-2 sm:gap-4">
         <!-- Search Trigger -->
         <button
@@ -88,6 +134,23 @@ function toggleSearch() {
           <span>Meu Impacto</span>
         </router-link>
 
+        <!-- Favoritos Button with Dynamic Badge -->
+        <router-link
+          to="/perfil"
+          class="relative p-2 rounded-full text-walnut hover:bg-surface-variant hover:text-terracotta transition-colors flex items-center justify-center"
+          title="Minhas Peças Favoritas"
+        >
+          <span class="material-symbols-outlined text-[22px]" :class="{ 'text-terracotta': customerStore.profile.favorites.length > 0 }">
+            favorite
+          </span>
+          <span
+            v-if="customerStore.profile.favorites.length > 0"
+            class="absolute -top-0.5 -right-0.5 w-5 h-5 bg-terracotta text-white text-[11px] font-bold rounded-full flex items-center justify-center shadow-sm"
+          >
+            {{ customerStore.profile.favorites.length }}
+          </span>
+        </router-link>
+
         <!-- Sacola Button with Dynamic Badge -->
         <router-link
           to="/sacola"
@@ -97,7 +160,7 @@ function toggleSearch() {
           <span class="material-symbols-outlined text-[22px]">shopping_bag</span>
           <span
             v-if="cartStore.itemCount > 0"
-            class="absolute -top-0.5 -right-0.5 w-5 h-5 bg-terracotta text-white text-[11px] font-bold rounded-full flex items-center justify-center shadow-sm"
+            class="absolute -top-0.5 -right-0.5 w-5 h-5 bg-primary text-raw-linen text-[11px] font-bold rounded-full flex items-center justify-center shadow-sm"
           >
             {{ cartStore.itemCount }}
           </span>

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import initialCustomer from '@/data/customer.json'
 import initialOrders from '@/data/orders.json'
 
@@ -7,11 +7,62 @@ const CUSTOMER_STORAGE_KEY = 'ecoa_customer_profile_v1'
 const ORDERS_STORAGE_KEY = 'ecoa_customer_orders_v1'
 
 export const useCustomerStore = defineStore('customer', () => {
-  const savedCustomer = localStorage.getItem(CUSTOMER_STORAGE_KEY)
-  const profile = ref(savedCustomer ? JSON.parse(savedCustomer) : initialCustomer)
+  // Carrega cliente do localStorage
+  let savedCustomer = null
+  try {
+    const raw = localStorage.getItem(CUSTOMER_STORAGE_KEY)
+    if (raw) {
+      const parsed = JSON.parse(raw)
+      // Se for o mock antigo da Mariana Silva, limpa para novo usuário
+      if (parsed.name === 'Mariana Silva' || parsed.id === 'cust-001') {
+        localStorage.removeItem(CUSTOMER_STORAGE_KEY)
+        localStorage.removeItem(ORDERS_STORAGE_KEY)
+      } else {
+        savedCustomer = parsed
+      }
+    }
+  } catch (e) {
+    console.error('Erro ao ler customer do localStorage:', e)
+  }
 
-  const savedOrders = localStorage.getItem(ORDERS_STORAGE_KEY)
-  const orders = ref(savedOrders ? JSON.parse(savedOrders) : initialOrders)
+  const profile = ref(savedCustomer || {
+    id: `cust-${Date.now()}`,
+    name: '',
+    email: '',
+    phone: '',
+    avatar: '',
+    address: {
+      street: '',
+      neighborhood: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      complement: ''
+    },
+    impactMetrics: {
+      waterSavedLiters: 0,
+      co2AvoidedKg: 0,
+      circularPiecesAdopted: 0
+    },
+    favorites: []
+  })
+
+  // Carrega pedidos do localStorage
+  let savedOrders = []
+  try {
+    const rawOrders = localStorage.getItem(ORDERS_STORAGE_KEY)
+    if (rawOrders) {
+      savedOrders = JSON.parse(rawOrders)
+    }
+  } catch (e) {
+    console.error('Erro ao ler orders do localStorage:', e)
+  }
+
+  const orders = ref(savedOrders || [])
+
+  const hasCustomName = computed(() => {
+    return Boolean(profile.value.name && profile.value.name.trim().length > 0)
+  })
 
   function saveProfile() {
     localStorage.setItem(CUSTOMER_STORAGE_KEY, JSON.stringify(profile.value))
@@ -21,12 +72,31 @@ export const useCustomerStore = defineStore('customer', () => {
     localStorage.setItem(ORDERS_STORAGE_KEY, JSON.stringify(orders.value))
   }
 
+  function setCustomerName(name) {
+    profile.value.name = (name || '').trim()
+    saveProfile()
+  }
+
   function updateProfile(newData) {
-    profile.value = { ...profile.value, ...newData }
+    profile.value = {
+      ...profile.value,
+      ...newData,
+      address: {
+        ...profile.value.address,
+        ...(newData.address || {})
+      },
+      impactMetrics: {
+        ...profile.value.impactMetrics,
+        ...(newData.impactMetrics || {})
+      }
+    }
     saveProfile()
   }
 
   function toggleFavorite(productId) {
+    if (!profile.value.favorites) {
+      profile.value.favorites = []
+    }
     const index = profile.value.favorites.indexOf(productId)
     if (index > -1) {
       profile.value.favorites.splice(index, 1)
@@ -37,7 +107,7 @@ export const useCustomerStore = defineStore('customer', () => {
   }
 
   function isFavorite(productId) {
-    return profile.value.favorites.includes(productId)
+    return (profile.value.favorites || []).includes(productId)
   }
 
   function createOrder({ items, subtotal, total, shippingMethod, paymentMethod, impact }) {
@@ -50,8 +120,8 @@ export const useCustomerStore = defineStore('customer', () => {
       subtotal,
       total,
       shipping: 0.00,
-      shippingMethod: shippingMethod || 'Frete Neutro de Carbono',
-      paymentMethod: paymentMethod || 'PIX Consciente',
+      shippingMethod: shippingMethod || 'Frete Ecológico Neutro',
+      paymentMethod: paymentMethod || 'PIX Instantâneo',
       items: items.map(item => ({
         productId: item.id,
         name: item.name,
@@ -72,7 +142,9 @@ export const useCustomerStore = defineStore('customer', () => {
 
     // Update customer cumulative positive impact metrics
     profile.value.impactMetrics.waterSavedLiters += (impact?.waterSavedLiters || 2500)
-    profile.value.impactMetrics.co2AvoidedKg += parseFloat((impact?.co2AvoidedKg || 6.0).toFixed(1))
+    profile.value.impactMetrics.co2AvoidedKg = parseFloat(
+      (profile.value.impactMetrics.co2AvoidedKg + (impact?.co2AvoidedKg || 6.0)).toFixed(1)
+    )
     profile.value.impactMetrics.circularPiecesAdopted += items.reduce((acc, i) => acc + i.quantity, 0)
     saveProfile()
 
@@ -82,9 +154,12 @@ export const useCustomerStore = defineStore('customer', () => {
   return {
     profile,
     orders,
+    hasCustomName,
+    setCustomerName,
     updateProfile,
     toggleFavorite,
     isFavorite,
     createOrder
   }
 })
+

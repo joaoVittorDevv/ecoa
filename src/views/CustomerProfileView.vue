@@ -49,24 +49,32 @@ function formatDate(isoString) {
       <!-- Profile Header & Avatar -->
       <section class="max-w-3xl mx-auto flex flex-col items-center text-center mb-10">
         <div class="relative mb-4">
-          <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-primary/20 tactile-shadow">
+          <div class="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden border-2 border-primary/20 tactile-shadow bg-raw-linen flex items-center justify-center">
             <img
+              v-if="customerStore.profile.avatar"
               :src="customerStore.profile.avatar"
               :alt="customerStore.profile.name"
               class="w-full h-full object-cover"
             />
+            <div v-else class="w-full h-full flex items-center justify-center bg-primary text-raw-linen font-display text-3xl font-bold">
+              {{ (customerStore.profile.name || 'E').charAt(0).toUpperCase() }}
+            </div>
           </div>
-          <span class="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-deep-forest text-raw-linen flex items-center justify-center text-xs shadow-sm" title="Consumidora Consciente">
+          <span class="absolute bottom-1 right-1 w-6 h-6 rounded-full bg-deep-forest text-raw-linen flex items-center justify-center text-xs shadow-sm" title="Guardião Consciente">
             🌿
           </span>
         </div>
 
         <h1 class="font-display text-2xl sm:text-3xl font-bold text-primary">
-          {{ customerStore.profile.name }}
+          {{ customerStore.profile.name || 'Guardião da Moda Circular' }}
         </h1>
-        <p class="text-sm font-label text-on-surface-variant flex items-center justify-center gap-1 mt-1">
+        <p v-if="customerStore.profile.address?.city" class="text-sm font-label text-on-surface-variant flex items-center justify-center gap-1 mt-1">
           <span class="material-symbols-outlined text-[16px] text-terracotta">location_on</span>
-          {{ customerStore.profile.address.city }}, {{ customerStore.profile.address.state }}
+          {{ customerStore.profile.address.city }}{{ customerStore.profile.address.state ? ', ' + customerStore.profile.address.state : '' }}
+        </p>
+        <p v-else class="text-xs font-label text-on-surface-variant flex items-center justify-center gap-1 mt-1">
+          <span class="material-symbols-outlined text-[16px] text-deep-forest">eco</span>
+          Membro da Comunidade Sustentável
         </p>
       </section>
 
@@ -98,7 +106,7 @@ function formatDate(isoString) {
 
           <!-- Metric 2: CO2 -->
           <div class="profile-metric-card p-4 bg-raw-linen rounded-2xl border border-primary/10 flex flex-col items-center text-center">
-            <span class="material-symbols-outlined text-deep-forest text-[24px] mb-1">co2</span>
+            <span class="material-symbols-outlined text-deep-forest text-[24px] mb-1">eco</span>
             <span class="font-display text-2xl sm:text-3xl font-bold text-primary">
               <AnimatedCounter :value="customerStore.profile.impactMetrics.co2AvoidedKg" :decimals="1" suffix=" kg" />
             </span>
@@ -107,21 +115,21 @@ function formatDate(isoString) {
             </span>
           </div>
 
-          <!-- Metric 3: Circular Pieces -->
+          <!-- Metric 3: Pieces -->
           <div class="profile-metric-card p-4 bg-raw-linen rounded-2xl border border-primary/10 flex flex-col items-center text-center">
-            <span class="material-symbols-outlined text-primary text-[24px] mb-1">cyclone</span>
+            <span class="material-symbols-outlined text-primary text-[24px] mb-1">inventory_2</span>
             <span class="font-display text-2xl sm:text-3xl font-bold text-primary">
               <AnimatedCounter :value="customerStore.profile.impactMetrics.circularPiecesAdopted" />
             </span>
             <span class="text-[11px] font-label text-on-surface-variant uppercase mt-1 font-semibold">
-              Peças no Ciclo
+              Peças Resgatadas
             </span>
           </div>
         </div>
       </section>
 
-      <!-- Navigation Tabs -->
-      <div class="max-w-4xl mx-auto mb-8 border-b border-primary/10 flex justify-center gap-4 sm:gap-8 text-xs sm:text-sm font-label uppercase tracking-wider">
+      <!-- Tabs Navigation: Orders, Favorites, Personal Data -->
+      <div class="max-w-4xl mx-auto flex items-center justify-center gap-6 sm:gap-10 border-b border-primary/10 mb-8 font-label text-xs sm:text-sm uppercase tracking-wider">
         <button
           @click="activeTab = 'orders'"
           class="pb-3 transition-colors relative font-bold"
@@ -149,49 +157,65 @@ function formatDate(isoString) {
 
       <!-- Tab 1: Orders History -->
       <main v-if="activeTab === 'orders'" class="max-w-4xl mx-auto flex flex-col gap-5">
-        <div
-          v-for="order in customerStore.orders"
-          :key="order.id"
-          class="bg-raw-linen/70 rounded-2xl p-5 sm:p-6 border border-primary/15 tactile-shadow flex flex-col gap-4"
-        >
-          <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-primary/10 text-xs font-label">
-            <div>
-              <span class="font-bold text-primary text-sm sm:text-base">#{{ order.id }}</span>
-              <span class="text-on-surface-variant ml-2">&bull; {{ formatDate(order.date) }}</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <span class="px-3 py-1 bg-deep-forest/10 text-deep-forest rounded-full font-bold">
-                {{ order.status }}
-              </span>
-              <span class="font-bold text-walnut text-sm sm:text-base">
-                R$ {{ order.total.toFixed(2).replace('.', ',') }}
-              </span>
-            </div>
-          </div>
-
-          <!-- Items in order -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            <div
-              v-for="item in order.items"
-              :key="`${order.id}-${item.productId}`"
-              class="flex items-center gap-3 p-2.5 bg-surface rounded-xl border border-primary/5"
-            >
-              <img :src="item.image" :alt="item.name" class="w-12 h-16 object-cover rounded-md bg-raw-linen shrink-0 mix-blend-multiply" />
-              <div class="min-w-0">
-                <h4 class="text-xs font-bold text-primary truncate">{{ item.name }}</h4>
-                <span class="text-[11px] font-label text-on-surface-variant block">
-                  Tam: {{ item.size }} &bull; R$ {{ item.price.toFixed(2).replace('.', ',') }}
+        <div v-if="customerStore.orders.length > 0" class="flex flex-col gap-5">
+          <div
+            v-for="order in customerStore.orders"
+            :key="order.id"
+            class="bg-raw-linen/70 rounded-2xl p-5 sm:p-6 border border-primary/15 tactile-shadow flex flex-col gap-4"
+          >
+            <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-primary/10 text-xs font-label">
+              <div>
+                <span class="font-bold text-primary text-sm sm:text-base">#{{ order.id }}</span>
+                <span class="text-on-surface-variant ml-2">&bull; {{ formatDate(order.date) }}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="px-3 py-1 bg-deep-forest/10 text-deep-forest rounded-full font-bold">
+                  {{ order.status }}
+                </span>
+                <span class="font-bold text-walnut text-sm sm:text-base">
+                  R$ {{ order.total.toFixed(2).replace('.', ',') }}
                 </span>
               </div>
             </div>
-          </div>
 
-          <div class="flex justify-between items-center pt-2 text-xs font-label text-on-surface-variant">
-            <span>Pagamento: <strong>{{ order.paymentMethod }}</strong></span>
-            <span class="text-deep-forest font-semibold">
-              {{ order.impact?.waterSavedLiters || 2500 }}L poupados neste pedido
-            </span>
+            <!-- Items in order -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div
+                v-for="item in order.items"
+                :key="`${order.id}-${item.productId}`"
+                class="flex items-center gap-3 p-2.5 bg-surface rounded-xl border border-primary/5"
+              >
+                <img :src="item.image" :alt="item.name" class="w-12 h-16 object-cover rounded-md bg-raw-linen shrink-0 mix-blend-multiply" />
+                <div class="min-w-0">
+                  <h4 class="text-xs font-bold text-primary truncate">{{ item.name }}</h4>
+                  <span class="text-[11px] font-label text-on-surface-variant block">
+                    Tam: {{ item.size }} &bull; R$ {{ item.price.toFixed(2).replace('.', ',') }}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex justify-between items-center pt-2 text-xs font-label text-on-surface-variant">
+              <span>Pagamento: <strong>{{ order.paymentMethod }}</strong></span>
+              <span class="text-deep-forest font-semibold">
+                {{ order.impact?.waterSavedLiters || 2500 }}L poupados neste pedido
+              </span>
+            </div>
           </div>
+        </div>
+
+        <div v-else class="text-center py-16 bg-raw-linen/50 rounded-2xl border border-primary/10 p-6 flex flex-col items-center">
+          <span class="material-symbols-outlined text-4xl text-primary/40 mb-2">inventory_2</span>
+          <h4 class="font-headline text-lg font-bold text-primary mb-1">Nenhum pedido realizado ainda</h4>
+          <p class="text-sm text-on-surface-variant mb-6 max-w-md">
+            Quando você concluir suas compras conscientes, seus pedidos e o rastreio do seu impacto ambiental aparecerão aqui.
+          </p>
+          <router-link
+            to="/garimpo"
+            class="bg-primary text-raw-linen px-8 py-3.5 rounded-full font-label text-xs uppercase tracking-wider font-bold shadow-md hover:bg-primary-container transition-colors"
+          >
+            Explorar Peças do Garimpo
+          </router-link>
         </div>
       </main>
 

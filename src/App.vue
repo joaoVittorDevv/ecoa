@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import Header from '@/components/common/Header.vue'
 import Footer from '@/components/common/Footer.vue'
 import BottomNav from '@/components/common/BottomNav.vue'
+import WelcomeModal from '@/components/common/WelcomeModal.vue'
 
 const route = useRoute()
 const isStoreView = computed(() => route.name !== 'philosophy')
@@ -11,6 +12,9 @@ const isStoreView = computed(() => route.name !== 'philosophy')
 
 <template>
   <div class="flex flex-col min-h-screen bg-background text-on-background selection:bg-terracotta/20 selection:text-walnut">
+    <!-- Modal de Onboarding Inicial -->
+    <WelcomeModal />
+
     <!-- Main Top Navigation (Exibido apenas no fluxo da loja) -->
     <Header v-if="isStoreView" />
 

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { useProductsStore } from '@/stores/products'
 import { useCartStore } from '@/stores/cart'
@@ -27,16 +27,28 @@ const product = computed(() => productsStore.getProductById(productId.value) || 
 const activeImage = ref('')
 const selectedSize = ref('')
 const addedToast = ref(false)
+const toastMessage = ref('')
+const toastType = ref('success') // 'success' | 'warning'
+const carouselContainer = ref(null)
 
-onMounted(() => {
+function updateProductState() {
   if (product.value) {
     activeImage.value = product.value.image
     selectedSize.value = product.value.size
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
+}
+
+onMounted(() => {
+  updateProductState()
+})
+
+watch(() => productId.value, () => {
+  updateProductState()
 })
 
 const relatedProducts = computed(() => {
-  return productsStore.getRelatedProducts(product.value.id, 3)
+  return productsStore.getRelatedProducts(product.value.id, 6)
 })
 
 const isFavorite = computed(() => {
@@ -48,16 +60,31 @@ function toggleFavorite() {
 }
 
 function addToCart() {
-  cartStore.addItem(product.value, selectedSize.value, 1)
+  const result = cartStore.addItem(product.value, selectedSize.value, 1)
+  if (result.success) {
+    toastType.value = 'success'
+    toastMessage.value = result.message || 'Peça adicionada à sua sacola com sucesso!'
+  } else {
+    toastType.value = 'warning'
+    toastMessage.value = result.message || 'Esta peça única já está na sua sacola.'
+  }
+  
   addedToast.value = true
   setTimeout(() => {
     addedToast.value = false
-  }, 3000)
+  }, 4000)
 }
 
 function buyNow() {
   cartStore.addItem(product.value, selectedSize.value, 1)
   router.push({ name: 'cart' })
+}
+
+function scrollCarousel(direction) {
+  if (carouselContainer.value) {
+    const scrollAmount = direction === 'next' ? 320 : -320
+    carouselContainer.value.scrollBy({ left: scrollAmount, behavior: 'smooth' })
+  }
 }
 </script>
 
@@ -85,7 +112,7 @@ function buyNow() {
               class="w-full h-full object-cover mix-blend-multiply opacity-95 transition-all duration-500"
             />
 
-            <!-- Badge -->
+            <!-- Badge: Peça Única -->
             <div class="absolute top-4 left-4 bg-surface/90 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-1.5 tactile-shadow border border-primary/10">
               <span class="material-symbols-outlined text-[16px] text-terracotta">history_edu</span>
               <span class="font-label text-xs uppercase text-walnut font-bold tracking-wider">Peça Única &bull; {{ product.era }}</span>
@@ -109,7 +136,7 @@ function buyNow() {
               v-for="(img, idx) in product.gallery"
               :key="idx"
               @click="activeImage = img"
-              class="w-20 h-24 rounded-lg overflow-hidden border-2 transition-all shrink-0 bg-raw-linen"
+              class="w-20 h-24 rounded-lg overflow-hidden border-2 transition-all shrink-0 bg-raw-linen cursor-pointer"
               :class="activeImage === img ? 'border-primary shadow-md' : 'border-primary/15 opacity-70 hover:opacity-100'"
             >
               <img :src="img" :alt="`${product.name} ${idx + 1}`" class="w-full h-full object-cover mix-blend-multiply" />
@@ -126,17 +153,20 @@ function buyNow() {
             <h1 class="font-display text-3xl sm:text-4xl text-primary font-bold mb-3">
               {{ product.name }}
             </h1>
-            <div class="flex items-center gap-4 text-sm font-label">
+            <div class="flex flex-wrap items-center gap-3 text-xs font-label">
               <span class="text-deep-forest bg-primary/10 px-3 py-1 rounded-full font-medium">
                 Condição: {{ product.condition }}
               </span>
               <span class="text-on-surface-variant">
                 Origem: <strong class="text-walnut">{{ product.origin }}</strong>
               </span>
+              <span class="text-terracotta bg-terracotta/10 px-2.5 py-1 rounded-full font-bold">
+                Exemplar Único (1 unidade)
+              </span>
             </div>
           </div>
 
-          <!-- Price -->
+          <!-- Price & Stock Status -->
           <div class="p-4 bg-raw-linen rounded-2xl border border-primary/10 flex items-baseline justify-between">
             <div>
               <span class="text-xs font-label text-on-surface-variant block mb-0.5">Valor Consciente</span>
@@ -149,6 +179,7 @@ function buyNow() {
                 </span>
               </div>
             </div>
+            
             <span class="text-xs font-label text-deep-forest bg-deep-forest/10 px-2.5 py-1 rounded-md font-bold">
               Peça Exclusiva (1 em estoque)
             </span>
@@ -158,7 +189,7 @@ function buyNow() {
           <div class="flex flex-col gap-3">
             <div class="flex justify-between items-center text-xs font-label">
               <span class="uppercase tracking-wider text-walnut font-bold">Tamanho da Etiqueta: {{ product.size }}</span>
-              <span class="text-terracotta">Peça vintage: confira medidas abaixo</span>
+              <span class="text-terracotta">Peça vintage: medidas detalhadas abaixo</span>
             </div>
 
             <!-- Real Measurements Badge Grid -->
@@ -186,7 +217,7 @@ function buyNow() {
           <div class="flex flex-col sm:flex-row gap-3 pt-2">
             <button
               @click="addToCart"
-              class="flex-1 bg-primary text-raw-linen hover:bg-primary-container active:scale-98 transition-all py-4 px-6 rounded-full font-label text-sm uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-md shadow-primary/20"
+              class="flex-1 bg-primary text-raw-linen hover:bg-primary-container active:scale-98 transition-all py-4 px-6 rounded-full font-label text-sm uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-md shadow-primary/20 cursor-pointer"
             >
               <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
               <span>Adicionar à Sacola</span>
@@ -194,7 +225,7 @@ function buyNow() {
 
             <button
               @click="buyNow"
-              class="sm:w-auto bg-terracotta text-raw-linen hover:opacity-90 active:scale-98 transition-all py-4 px-8 rounded-full font-label text-sm uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-md shadow-terracotta/20"
+              class="sm:w-auto bg-terracotta text-raw-linen hover:opacity-90 active:scale-98 transition-all py-4 px-8 rounded-full font-label text-sm uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-md shadow-terracotta/20 cursor-pointer"
             >
               <span>Comprar Agora</span>
             </button>
@@ -203,13 +234,16 @@ function buyNow() {
           <!-- Toast Notification upon adding -->
           <div
             v-if="addedToast"
-            class="p-3 bg-deep-forest text-raw-linen rounded-xl flex items-center justify-between text-xs font-label shadow-lg animate-fadeIn"
+            class="p-3.5 rounded-xl flex items-center justify-between text-xs font-label shadow-lg animate-fadeIn"
+            :class="toastType === 'warning' ? 'bg-terracotta text-raw-linen' : 'bg-deep-forest text-raw-linen'"
           >
             <span class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-[18px]">check_circle</span>
-              Peça adicionada à sua sacola com sucesso!
+              <span class="material-symbols-outlined text-[18px]">
+                {{ toastType === 'warning' ? 'info' : 'check_circle' }}
+              </span>
+              <span>{{ toastMessage }}</span>
             </span>
-            <router-link to="/sacola" class="underline font-bold">Ver Sacola</router-link>
+            <router-link to="/sacola" class="underline font-bold ml-2">Ver Sacola</router-link>
           </div>
 
           <!-- Environmental Savings of this Item -->
@@ -243,28 +277,58 @@ function buyNow() {
         <StoryTag :product="product" />
       </section>
 
-      <!-- Related Products Section -->
+      <!-- Related Products Section: Peças que Ecoam no Mesmo Tom (Abaixo do Produto Principal) -->
       <section class="py-14 border-t border-primary/10">
-        <div class="flex justify-between items-end mb-8">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-8 gap-4">
           <div>
             <span class="text-xs font-label uppercase tracking-widest text-terracotta font-bold block mb-1">
               Curadoria Relacionada
             </span>
-            <h3 class="font-display text-2xl text-primary font-bold">
+            <h3 class="font-display text-2xl sm:text-3xl text-primary font-bold">
               Peças que Ecoam no Mesmo Tom
             </h3>
+            <p class="text-xs text-on-surface-variant mt-1 font-body">
+              Sugestões exclusivas com harmonia estética caso você busque outra alternativa única.
+            </p>
           </div>
-          <router-link to="/produtos" class="text-xs font-label uppercase text-secondary hover:underline font-bold">
-            Ver catálogo completo
-          </router-link>
+
+          <div class="flex items-center gap-3 self-end sm:self-auto">
+            <!-- Carousel Control Arrows -->
+            <button
+              @click="scrollCarousel('prev')"
+              class="w-10 h-10 rounded-full border border-primary/20 bg-surface text-walnut hover:bg-surface-variant flex items-center justify-center transition-colors cursor-pointer"
+              title="Anterior"
+            >
+              <span class="material-symbols-outlined text-[20px]">chevron_left</span>
+            </button>
+            <button
+              @click="scrollCarousel('next')"
+              class="w-10 h-10 rounded-full border border-primary/20 bg-surface text-walnut hover:bg-surface-variant flex items-center justify-center transition-colors cursor-pointer"
+              title="Próximo"
+            >
+              <span class="material-symbols-outlined text-[20px]">chevron_right</span>
+            </button>
+            <router-link
+              to="/produtos"
+              class="ml-2 text-xs font-label uppercase text-secondary hover:underline font-bold hidden md:inline-block"
+            >
+              Ver catálogo completo
+            </router-link>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          <ProductCard
+        <!-- Horizontal Fluid Carousel -->
+        <div
+          ref="carouselContainer"
+          class="flex gap-6 overflow-x-auto pb-4 scroll-smooth no-scrollbar"
+        >
+          <div
             v-for="rel in relatedProducts"
             :key="rel.id"
-            :product="rel"
-          />
+            class="min-w-[260px] sm:min-w-[280px] md:min-w-[300px] flex-shrink-0"
+          >
+            <ProductCard :product="rel" />
+          </div>
         </div>
       </section>
     </div>
@@ -274,5 +338,12 @@ function buyNow() {
 <style scoped>
 .font-fill {
   font-variation-settings: 'FILL' 1;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 </style>
