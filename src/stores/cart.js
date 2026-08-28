@@ -5,34 +5,24 @@ const CART_STORAGE_KEY = 'ecoa_cart_items_v1'
 const CEP_STORAGE_KEY = 'ecoa_cart_cep_v1'
 
 export const useCartStore = defineStore('cart', () => {
-  // Load initial cart from localStorage if available, or default with 2 curated items
-  const savedCart = localStorage.getItem(CART_STORAGE_KEY)
-  const items = ref(savedCart ? JSON.parse(savedCart) : [
-    {
-      id: 'prod-7',
-      name: 'Blusa Pérola de Seda Natural',
-      price: 260.00,
-      size: 'M',
-      quantity: 1,
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCoUs6q0b7nh0YxlWG0PEa1aAkJ2iJGHPLXbWmUZWVzIig-2EuREWFgVBjPNtjZnLpsDiOCeQAoX6ECI70BGYRHxA18VFqlOcMkn6EF4Gqr41QqQvd1C-iyhVlwaXgIHCQmh3ifqmDS9nqU-WAoK9kywBa_j2RL_mGnU3iOhOqzsGaumEW790CQW8kHegvXyTDrPGbCdsBpAe9kodgRNBYDCa9HVUrNuyNI4TF5yqeVKr5klEEZa60G',
-      origin: 'Florença, Itália',
-      material: '100% Crepe de Seda',
-      waterSavedLiters: 2100,
-      co2AvoidedKg: 4.5
-    },
-    {
-      id: 'prod-8',
-      name: 'Blazer Linho Cru Minimalista',
-      price: 310.00,
-      size: 'M',
-      quantity: 1,
-      image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuA9sGaNvvwHr-QRRie9c7PH3q6XSr8iKzk9rwEn-Az8Ruo5F-8PoXoXXwIGge27ZLizDnn6W8gNPYb4BCm6ep5ssAKtdA47EFBMhEKDa4x04QsXGaTg78WyR5c86aQkruyK82pPo6SGvo3JNU3G5aekhHoCCgjmLRJIZ6a_ay_79kn48mWMyd0UOvjAFqN3-LZzHkqTIbq6xBe_v4Jfly6GzRvMHLaPODcSjXMXhcB-7NWzus1M8cJV',
-      origin: 'Porto, Portugal',
-      material: '100% Linho Europeu Puro',
-      waterSavedLiters: 3400,
-      co2AvoidedKg: 7.0
-    }
-  ])
+  let savedCart = []
+  let savedCepData = null
+  try {
+    const parsedCart = JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || '[]')
+    const parsedCep = JSON.parse(localStorage.getItem(CEP_STORAGE_KEY) || 'null')
+    savedCart = Array.isArray(parsedCart) ? parsedCart : []
+    savedCepData = parsedCep && typeof parsedCep === 'object' && !Array.isArray(parsedCep) ? parsedCep : null
+  } catch (e) {
+    localStorage.removeItem(CART_STORAGE_KEY)
+    localStorage.removeItem(CEP_STORAGE_KEY)
+    console.error('Erro ao ler carrinho do localStorage:', e)
+  }
+  // Cada produto do catálogo é um exemplar único: remove duplicatas e normaliza quantidade.
+  const items = ref(savedCart.reduce((unique, item) => {
+    if (!item?.id || unique.some(saved => saved.id === item.id)) return unique
+    unique.push({ ...item, quantity: 1 })
+    return unique
+  }, []))
 
   const couponCode = ref('')
   const discountPercent = ref(0)
@@ -40,9 +30,8 @@ export const useCartStore = defineStore('cart', () => {
   const isNeutralCarbonShipping = ref(true)
 
   // Shipping state
-  const savedCepData = localStorage.getItem(CEP_STORAGE_KEY)
-  const shippingCep = ref(savedCepData ? JSON.parse(savedCepData).cep : '')
-  const shippingAddress = ref(savedCepData ? JSON.parse(savedCepData).address : null)
+  const shippingCep = ref(savedCepData?.cep || '')
+  const shippingAddress = ref(savedCepData?.address || null)
   const shippingMethod = ref('eco') // 'eco' | 'express'
   const isCalculatingShipping = ref(false)
   const shippingError = ref('')
@@ -101,26 +90,23 @@ export const useCartStore = defineStore('cart', () => {
     return items.value.reduce((acc, item) => acc + ((item.co2AvoidedKg || 5.0) * item.quantity), 0)
   })
 
-  function addItem(product, size = null, quantity = 1) {
-    const chosenSize = size || product.size || 'M'
-    const existingIndex = items.value.findIndex(item => item.id === product.id && item.size === chosenSize)
-
-    if (existingIndex > -1) {
-      items.value[existingIndex].quantity += quantity
-    } else {
-      items.value.push({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        size: chosenSize,
-        quantity,
-        image: product.image,
-        origin: product.origin,
-        material: product.material,
-        waterSavedLiters: product.impact?.waterSavedLiters || 2000,
-        co2AvoidedKg: product.impact?.co2AvoidedKg || 5.0
-      })
+  function addItem(product, size = null) {
+    if (items.value.some(item => item.id === product.id)) {
+      return { success: false, message: 'Esta peça única já está na sua sacola.' }
     }
+
+    items.value.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      size: size || product.size || 'M',
+      quantity: 1,
+      image: product.image,
+      origin: product.origin,
+      material: product.material,
+      waterSavedLiters: product.impact?.waterSavedLiters || 2000,
+      co2AvoidedKg: product.impact?.co2AvoidedKg || 5.0
+    })
     saveCart()
     return { success: true, message: 'Peça adicionada com sucesso à sua sacola!' }
   }
@@ -140,9 +126,9 @@ export const useCartStore = defineStore('cart', () => {
     }
 
 
-    item.quantity = newQty
+    item.quantity = 1
     saveCart()
-    return { success: true }
+    return { success: false, message: 'Peça única: limite de 1 unidade.' }
   }
 
   function applyCoupon(code) {

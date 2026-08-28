@@ -13,6 +13,7 @@ const productsStore = useProductsStore()
 
 const activeTab = ref('orders') // 'orders' | 'favorites' | 'personal'
 const editSuccess = ref(false)
+const showResetConfirmation = ref(false)
 
 const favoriteProducts = computed(() => {
   return productsStore.products.filter(p => customerStore.isFavorite(p.id))
@@ -35,6 +36,13 @@ function saveProfileChanges() {
   setTimeout(() => {
     editSuccess.value = false
   }, 3000)
+}
+
+function resetLocalData() {
+  Object.keys(localStorage)
+    .filter(key => key.startsWith('ecoa_'))
+    .forEach(key => localStorage.removeItem(key))
+  window.location.assign('/')
 }
 
 function formatDate(isoString) {
@@ -307,8 +315,50 @@ function formatDate(isoString) {
           >
             Salvar Alterações
           </button>
+
+          <button
+            type="button"
+            class="self-center w-fit px-2 py-1 mt-2 text-[11px] text-on-surface-variant underline underline-offset-4 hover:text-terracotta transition-colors"
+            @click="showResetConfirmation = true"
+          >
+            Apagar dados locais e recomeçar
+          </button>
         </form>
       </section>
+    </div>
+
+    <div
+      v-if="showResetConfirmation"
+      class="fixed inset-0 z-50 flex items-center justify-center bg-walnut/45 p-4"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="reset-title"
+      @keydown.esc="showResetConfirmation = false"
+      @click.self="showResetConfirmation = false"
+    >
+      <div class="w-full max-w-md rounded-2xl border border-primary/15 bg-surface p-6 tactile-shadow">
+        <h2 id="reset-title" class="font-headline text-xl font-bold text-primary mb-3">Apagar dados locais?</h2>
+        <p class="text-sm text-on-surface-variant leading-relaxed">
+          Esta ação apaga perfil, favoritos, pedidos, sacola e endereço armazenados neste navegador. O site será iniciado novamente e essa ação não poderá ser desfeita.
+        </p>
+        <div class="flex flex-col-reverse sm:flex-row justify-end gap-3 mt-6">
+          <button
+            type="button"
+            class="px-5 py-2.5 rounded-full border border-primary/20 text-xs font-label font-bold uppercase text-walnut hover:bg-surface-variant"
+            @click="showResetConfirmation = false"
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            class="px-5 py-2.5 rounded-full bg-terracotta text-white text-xs font-label font-bold uppercase hover:opacity-90"
+            autofocus
+            @click="resetLocalData"
+          >
+            Sim, apagar e recomeçar
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </template>

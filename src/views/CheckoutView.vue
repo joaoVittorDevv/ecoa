@@ -38,7 +38,7 @@ const cardData = ref({
 const selectedPayment = ref('pix') // 'pix' | 'credit' | 'boleto'
 const isSubmitting = ref(false)
 const orderCreated = ref(null)
-const step1Error = ref('')
+const fieldErrors = ref({})
 const step3Error = ref('')
 const pixCopied = ref(false)
 
@@ -63,6 +63,7 @@ onMounted(() => {
 
 // Formatting functions
 function formatZipCode(event) {
+  clearFieldError('zipCode')
   let val = event.target.value.replace(/\D/g, '')
   if (val.length > 8) val = val.slice(0, 8)
   if (val.length > 5) {
@@ -78,6 +79,7 @@ function formatZipCode(event) {
 }
 
 function formatPhoneInput(event) {
+  clearFieldError('phone')
   let val = event.target.value.replace(/\D/g, '')
   if (val.length > 11) val = val.slice(0, 11)
   
@@ -99,7 +101,7 @@ async function searchAddressByZip(cleanedZip) {
     formData.value.neighborhood = result.address.neighborhood || formData.value.neighborhood
     formData.value.city = result.address.city || formData.value.city
     formData.value.state = result.address.state || formData.value.state
-    step1Error.value = ''
+    ;['zipCode', 'street', 'neighborhood', 'city', 'state'].forEach(clearFieldError)
   }
 }
 
@@ -134,45 +136,36 @@ function copyPixKey() {
 }
 
 // Step navigation validation
+function clearFieldError(field) {
+  if (fieldErrors.value[field]) delete fieldErrors.value[field]
+}
+
 function goToStep2() {
-  step1Error.value = ''
-  
-  // 1. Validação de Nome
-  if (!formData.value.name.trim() || formData.value.name.trim().length < 2) {
-    step1Error.value = 'Por favor, preencha seu nome completo para identificação.'
-    return
+  const data = formData.value
+  const errors = {}
+  const required = (field, label) => {
+    if (!data[field].trim()) errors[field] = `${label} é obrigatório.`
   }
 
-  // 2. Validação rigorosa de E-mail
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-  if (!formData.value.email.trim() || !emailRegex.test(formData.value.email.trim())) {
-    step1Error.value = 'Por favor, insira um e-mail válido para rastreio do pedido (ex: seuemail@exemplo.com).'
-    return
-  }
+  required('name', 'Nome completo')
+  if (data.name.trim() && data.name.trim().length < 2) errors.name = 'Informe pelo menos 2 caracteres.'
+  required('email', 'E-mail')
+  if (data.email.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email.trim())) errors.email = 'Digite um e-mail válido, como nome@exemplo.com.'
+  required('phone', 'Telefone')
+  if (data.phone && !/^\d{10,11}$/.test(data.phone.replace(/\D/g, ''))) errors.phone = 'Informe DDD e telefone com 10 ou 11 dígitos.'
+  required('zipCode', 'CEP')
+  if (data.zipCode && data.zipCode.replace(/\D/g, '').length !== 8) errors.zipCode = 'O CEP deve ter 8 dígitos.'
+  required('neighborhood', 'Bairro')
+  required('street', 'Logradouro')
+  required('number', 'Número')
+  required('city', 'Cidade')
+  required('state', 'Estado')
+  if (data.state.trim() && !/^[A-Za-z]{2}$/.test(data.state.trim())) errors.state = 'Use a sigla do estado com 2 letras, como SP.'
 
-  // 3. Validação rigorosa de Telefone
-  const rawPhone = formData.value.phone.replace(/\D/g, '')
-  if (rawPhone.length < 10) {
-    step1Error.value = 'Por favor, insira um número de telefone com DDD válido (ex: (11) 98765-4321).'
-    return
-  }
-
-  // 4. Validação de CEP
-  const rawZip = formData.value.zipCode.replace(/\D/g, '')
-  if (rawZip.length !== 8) {
-    step1Error.value = 'Por favor, informe um CEP válido com 8 dígitos para entrega.'
-    return
-  }
-
-  // 5. Validação de Logradouro, Bairro e Cidade
-  if (!formData.value.street.trim() || !formData.value.neighborhood.trim() || !formData.value.city.trim()) {
-    step1Error.value = 'Por favor, preencha os dados de rua, bairro e cidade.'
-    return
-  }
-
-  // 6. Validação de Número do Imóvel
-  if (!formData.value.number.trim()) {
-    step1Error.value = 'Por favor, informe o número da residência (ou "S/N" caso não haja).'
+  fieldErrors.value = errors
+  const firstInvalid = Object.keys(errors)[0]
+  if (firstInvalid) {
+    requestAnimationFrame(() => document.getElementById(`checkout-${firstInvalid}`)?.focus())
     return
   }
 
@@ -390,36 +383,57 @@ function goToProfile() {
                 <div class="sm:col-span-2">
                   <label class="block uppercase text-on-surface-variant mb-1 font-semibold">Nome Completo *</label>
                   <input
+                    id="checkout-name"
                     v-model="formData.name"
                     type="text"
                     required
                     placeholder="Seu nome completo"
-                    class="w-full px-4 py-2.5 bg-surface rounded-xl border border-primary/20 text-sm text-walnut focus:outline-none focus:border-primary"
+                    class="w-full px-4 py-2.5 bg-surface rounded-xl border text-sm text-walnut focus:outline-none"
+                    :class="fieldErrors.name ? 'border-error focus:border-error' : 'border-primary/20 focus:border-primary'"
+                    :aria-invalid="Boolean(fieldErrors.name)"
+                    aria-describedby="checkout-name-error"
+                    @input="clearFieldError('name')"
                   />
+                  <span v-if="fieldErrors.name" id="checkout-name-error" class="block mt-1.5 text-xs text-error" role="alert">{{ fieldErrors.name }}</span>
                 </div>
 
                 <div>
                   <label class="block uppercase text-on-surface-variant mb-1 font-semibold">E-mail para Rastreio *</label>
                   <input
+                    id="checkout-email"
                     v-model="formData.email"
                     type="email"
+                    inputmode="email"
+                    autocomplete="email"
                     required
                     placeholder="seuemail@exemplo.com"
-                    class="w-full px-4 py-2.5 bg-surface rounded-xl border border-primary/20 text-sm text-walnut focus:outline-none focus:border-primary"
+                    class="w-full px-4 py-2.5 bg-surface rounded-xl border text-sm text-walnut focus:outline-none"
+                    :class="fieldErrors.email ? 'border-error focus:border-error' : 'border-primary/20 focus:border-primary'"
+                    :aria-invalid="Boolean(fieldErrors.email)"
+                    aria-describedby="checkout-email-error"
+                    @input="clearFieldError('email')"
                   />
+                  <span v-if="fieldErrors.email" id="checkout-email-error" class="block mt-1.5 text-xs text-error" role="alert">{{ fieldErrors.email }}</span>
                 </div>
 
                 <div>
                   <label class="block uppercase text-on-surface-variant mb-1 font-semibold">Telefone / WhatsApp *</label>
                   <input
+                    id="checkout-phone"
                     v-model="formData.phone"
                     @input="formatPhoneInput"
                     type="tel"
+                    inputmode="tel"
+                    autocomplete="tel"
                     required
                     placeholder="(00) 00000-0000"
                     maxlength="15"
-                    class="w-full px-4 py-2.5 bg-surface rounded-xl border border-primary/20 text-sm text-walnut focus:outline-none focus:border-primary"
+                    class="w-full px-4 py-2.5 bg-surface rounded-xl border text-sm text-walnut focus:outline-none"
+                    :class="fieldErrors.phone ? 'border-error focus:border-error' : 'border-primary/20 focus:border-primary'"
+                    :aria-invalid="Boolean(fieldErrors.phone)"
+                    aria-describedby="checkout-phone-error"
                   />
+                  <span v-if="fieldErrors.phone" id="checkout-phone-error" class="block mt-1.5 text-xs text-error" role="alert">{{ fieldErrors.phone }}</span>
                 </div>
 
                 <!-- CEP with auto-complete -->
@@ -427,13 +441,19 @@ function goToProfile() {
                   <label class="block uppercase text-on-surface-variant mb-1 font-semibold">CEP * (Busca Automática)</label>
                   <div class="relative">
                     <input
+                      id="checkout-zipCode"
                       v-model="formData.zipCode"
                       @input="formatZipCode"
                       type="text"
+                      inputmode="numeric"
+                      autocomplete="postal-code"
                       required
                       placeholder="00000-000"
                       maxlength="9"
-                      class="w-full px-4 py-2.5 bg-surface rounded-xl border border-primary/20 text-sm text-walnut focus:outline-none focus:border-primary"
+                      class="w-full px-4 py-2.5 bg-surface rounded-xl border text-sm text-walnut focus:outline-none"
+                      :class="fieldErrors.zipCode ? 'border-error focus:border-error' : 'border-primary/20 focus:border-primary'"
+                      :aria-invalid="Boolean(fieldErrors.zipCode)"
+                      aria-describedby="checkout-zipCode-error"
                     />
                     <span
                       v-if="cartStore.isCalculatingShipping"
@@ -442,38 +462,60 @@ function goToProfile() {
                       refresh
                     </span>
                   </div>
+                  <span v-if="fieldErrors.zipCode" id="checkout-zipCode-error" class="block mt-1.5 text-xs text-error" role="alert">{{ fieldErrors.zipCode }}</span>
                 </div>
 
                 <div>
                   <label class="block uppercase text-on-surface-variant mb-1 font-semibold">Bairro *</label>
                   <input
+                    id="checkout-neighborhood"
                     v-model="formData.neighborhood"
                     type="text"
+                    autocomplete="address-level3"
                     required
                     placeholder="Bairro"
-                    class="w-full px-4 py-2.5 bg-surface rounded-xl border border-primary/20 text-sm text-walnut focus:outline-none focus:border-primary"
+                    class="w-full px-4 py-2.5 bg-surface rounded-xl border text-sm text-walnut focus:outline-none"
+                    :class="fieldErrors.neighborhood ? 'border-error focus:border-error' : 'border-primary/20 focus:border-primary'"
+                    :aria-invalid="Boolean(fieldErrors.neighborhood)"
+                    aria-describedby="checkout-neighborhood-error"
+                    @input="clearFieldError('neighborhood')"
                   />
+                  <span v-if="fieldErrors.neighborhood" id="checkout-neighborhood-error" class="block mt-1.5 text-xs text-error" role="alert">{{ fieldErrors.neighborhood }}</span>
                 </div>
 
                 <div class="sm:col-span-2">
                   <label class="block uppercase text-on-surface-variant mb-1 font-semibold">Logradouro (Rua, Avenida) *</label>
                   <input
+                    id="checkout-street"
                     v-model="formData.street"
                     type="text"
+                    autocomplete="address-line1"
                     required
                     placeholder="Rua ou Avenida"
-                    class="w-full px-4 py-2.5 bg-surface rounded-xl border border-primary/20 text-sm text-walnut focus:outline-none focus:border-primary"
+                    class="w-full px-4 py-2.5 bg-surface rounded-xl border text-sm text-walnut focus:outline-none"
+                    :class="fieldErrors.street ? 'border-error focus:border-error' : 'border-primary/20 focus:border-primary'"
+                    :aria-invalid="Boolean(fieldErrors.street)"
+                    aria-describedby="checkout-street-error"
+                    @input="clearFieldError('street')"
                   />
+                  <span v-if="fieldErrors.street" id="checkout-street-error" class="block mt-1.5 text-xs text-error" role="alert">{{ fieldErrors.street }}</span>
                 </div>
 
                 <div>
                   <label class="block uppercase text-on-surface-variant mb-1 font-semibold">Número *</label>
                   <input
+                    id="checkout-number"
                     v-model="formData.number"
                     type="text"
-                    placeholder="Número"
-                    class="w-full px-4 py-2.5 bg-surface rounded-xl border border-primary/20 text-sm text-walnut focus:outline-none focus:border-primary"
+                    autocomplete="address-line2"
+                    placeholder="Número ou S/N"
+                    class="w-full px-4 py-2.5 bg-surface rounded-xl border text-sm text-walnut focus:outline-none"
+                    :class="fieldErrors.number ? 'border-error focus:border-error' : 'border-primary/20 focus:border-primary'"
+                    :aria-invalid="Boolean(fieldErrors.number)"
+                    aria-describedby="checkout-number-error"
+                    @input="clearFieldError('number')"
                   />
+                  <span v-if="fieldErrors.number" id="checkout-number-error" class="block mt-1.5 text-xs text-error" role="alert">{{ fieldErrors.number }}</span>
                 </div>
 
                 <div>
@@ -489,38 +531,47 @@ function goToProfile() {
                 <div>
                   <label class="block uppercase text-on-surface-variant mb-1 font-semibold">Cidade *</label>
                   <input
+                    id="checkout-city"
                     v-model="formData.city"
                     type="text"
+                    autocomplete="address-level2"
                     required
                     placeholder="Cidade"
-                    class="w-full px-4 py-2.5 bg-surface rounded-xl border border-primary/20 text-sm text-walnut focus:outline-none focus:border-primary"
+                    class="w-full px-4 py-2.5 bg-surface rounded-xl border text-sm text-walnut focus:outline-none"
+                    :class="fieldErrors.city ? 'border-error focus:border-error' : 'border-primary/20 focus:border-primary'"
+                    :aria-invalid="Boolean(fieldErrors.city)"
+                    aria-describedby="checkout-city-error"
+                    @input="clearFieldError('city')"
                   />
+                  <span v-if="fieldErrors.city" id="checkout-city-error" class="block mt-1.5 text-xs text-error" role="alert">{{ fieldErrors.city }}</span>
                 </div>
 
                 <div>
                   <label class="block uppercase text-on-surface-variant mb-1 font-semibold">Estado (UF) *</label>
                   <input
+                    id="checkout-state"
                     v-model="formData.state"
                     type="text"
+                    autocomplete="address-level1"
                     required
                     placeholder="UF (ex: SP)"
                     maxlength="2"
-                    class="w-full px-4 py-2.5 bg-surface rounded-xl border border-primary/20 text-sm text-walnut uppercase focus:outline-none focus:border-primary"
+                    class="w-full px-4 py-2.5 bg-surface rounded-xl border text-sm text-walnut uppercase focus:outline-none"
+                    :class="fieldErrors.state ? 'border-error focus:border-error' : 'border-primary/20 focus:border-primary'"
+                    :aria-invalid="Boolean(fieldErrors.state)"
+                    aria-describedby="checkout-state-error"
+                    @input="clearFieldError('state')"
                   />
+                  <span v-if="fieldErrors.state" id="checkout-state-error" class="block mt-1.5 text-xs text-error" role="alert">{{ fieldErrors.state }}</span>
                 </div>
               </div>
-
-              <!-- Step 1 Error if any -->
-              <span v-if="step1Error" class="text-xs text-error font-label">
-                {{ step1Error }}
-              </span>
 
               <!-- Step 1 Navigation CTA -->
               <div class="pt-3 border-t border-primary/10 flex justify-end">
                 <button
                   type="button"
                   @click="goToStep2"
-                  class="bg-primary text-raw-linen px-8 py-3.5 rounded-full font-label text-xs uppercase tracking-wider font-bold shadow-md hover:bg-primary-container transition-all cursor-pointer inline-flex items-center gap-2"
+                  class="w-full sm:w-auto bg-primary text-raw-linen px-6 sm:px-8 py-3.5 rounded-full font-label text-xs uppercase tracking-wider font-bold shadow-md hover:bg-primary-container transition-all cursor-pointer inline-flex items-center justify-center gap-2"
                 >
                   <span>Avançar para Frete &amp; Revisão</span>
                   <span class="material-symbols-outlined text-[16px]">arrow_forward</span>

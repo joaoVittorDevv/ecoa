@@ -55,6 +55,8 @@ const isFavorite = computed(() => {
   return customerStore.isFavorite(product.value.id)
 })
 
+const isInCart = computed(() => cartStore.items.some(item => item.id === product.value.id))
+
 function toggleFavorite() {
   customerStore.toggleFavorite(product.value.id)
 }
@@ -217,10 +219,11 @@ function scrollCarousel(direction) {
           <div class="flex flex-col sm:flex-row gap-3 pt-2">
             <button
               @click="addToCart"
-              class="flex-1 bg-primary text-raw-linen hover:bg-primary-container active:scale-98 transition-all py-4 px-6 rounded-full font-label text-sm uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-md shadow-primary/20 cursor-pointer"
+              :disabled="isInCart"
+              class="flex-1 bg-primary text-raw-linen hover:bg-primary-container active:scale-98 transition-all py-4 px-6 rounded-full font-label text-sm uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-md shadow-primary/20 cursor-pointer disabled:bg-primary/55 disabled:cursor-not-allowed disabled:shadow-none"
             >
-              <span class="material-symbols-outlined text-[20px]">shopping_bag</span>
-              <span>Adicionar à Sacola</span>
+              <span class="material-symbols-outlined text-[20px]">{{ isInCart ? 'check_circle' : 'shopping_bag' }}</span>
+              <span>{{ isInCart ? 'Peça já está na Sacola' : 'Adicionar à Sacola' }}</span>
             </button>
 
             <button

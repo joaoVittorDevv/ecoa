@@ -17,7 +17,7 @@ export const useCustomerStore = defineStore('customer', () => {
       if (parsed.name === 'Mariana Silva' || parsed.id === 'cust-001') {
         localStorage.removeItem(CUSTOMER_STORAGE_KEY)
         localStorage.removeItem(ORDERS_STORAGE_KEY)
-      } else {
+      } else if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
         savedCustomer = parsed
       }
     }
@@ -25,26 +25,14 @@ export const useCustomerStore = defineStore('customer', () => {
     console.error('Erro ao ler customer do localStorage:', e)
   }
 
-  const profile = ref(savedCustomer || {
-    id: `cust-${Date.now()}`,
-    name: '',
-    email: '',
-    phone: '',
-    avatar: '',
-    address: {
-      street: '',
-      neighborhood: '',
-      city: '',
-      state: '',
-      zipCode: '',
-      complement: ''
-    },
-    impactMetrics: {
-      waterSavedLiters: 0,
-      co2AvoidedKg: 0,
-      circularPiecesAdopted: 0
-    },
-    favorites: []
+  // Mescla perfis antigos/parciais com o schema atual para evitar chaves ausentes.
+  const profile = ref({
+    ...initialCustomer,
+    ...savedCustomer,
+    id: savedCustomer?.id || `cust-${Date.now()}`,
+    address: { ...initialCustomer.address, ...savedCustomer?.address },
+    impactMetrics: { ...initialCustomer.impactMetrics, ...savedCustomer?.impactMetrics },
+    favorites: savedCustomer?.favorites ?? []
   })
 
   // Carrega pedidos do localStorage
@@ -52,7 +40,8 @@ export const useCustomerStore = defineStore('customer', () => {
   try {
     const rawOrders = localStorage.getItem(ORDERS_STORAGE_KEY)
     if (rawOrders) {
-      savedOrders = JSON.parse(rawOrders)
+      const parsedOrders = JSON.parse(rawOrders)
+      savedOrders = Array.isArray(parsedOrders) ? parsedOrders : []
     }
   } catch (e) {
     console.error('Erro ao ler orders do localStorage:', e)
@@ -94,9 +83,6 @@ export const useCustomerStore = defineStore('customer', () => {
   }
 
   function toggleFavorite(productId) {
-    if (!profile.value.favorites) {
-      profile.value.favorites = []
-    }
     const index = profile.value.favorites.indexOf(productId)
     if (index > -1) {
       profile.value.favorites.splice(index, 1)
@@ -107,7 +93,7 @@ export const useCustomerStore = defineStore('customer', () => {
   }
 
   function isFavorite(productId) {
-    return (profile.value.favorites || []).includes(productId)
+    return profile.value.favorites.includes(productId)
   }
 
   function createOrder({ items, subtotal, total, shippingMethod, paymentMethod, impact }) {

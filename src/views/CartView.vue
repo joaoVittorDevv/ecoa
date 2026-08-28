@@ -42,14 +42,6 @@ async function handleCalculateShipping() {
   await cartStore.calculateShipping(inputCep.value)
 }
 
-function handleIncreaseQuantity(item) {
-  cartStore.updateQuantity(item.id, item.size, item.quantity + 1)
-}
-
-function handleDecreaseQuantity(item) {
-  cartStore.updateQuantity(item.id, item.size, item.quantity - 1)
-}
-
 function handleApplyCoupon() {
   if (!inputCoupon.value) return
   const result = cartStore.applyCoupon(inputCoupon.value)
@@ -129,22 +121,9 @@ function proceedToCheckout() {
               <!-- Price & Quantity Controls -->
               <div class="mt-4 pt-3 border-t border-primary/10">
                 <div class="flex justify-between items-center">
-                  <div class="flex items-center gap-2 bg-surface rounded-full border border-primary/20 px-2 py-1">
-                    <button
-                      @click="handleDecreaseQuantity(item)"
-                      class="w-6 h-6 rounded-full flex items-center justify-center text-walnut hover:bg-surface-variant text-sm font-bold cursor-pointer"
-                      title="Diminuir quantidade"
-                    >
-                      -
-                    </button>
-                    <span class="text-xs font-label font-bold px-2">{{ item.quantity }}</span>
-                    <button
-                      @click="handleIncreaseQuantity(item)"
-                      class="w-6 h-6 rounded-full flex items-center justify-center text-walnut hover:bg-surface-variant text-sm font-bold cursor-pointer"
-                      title="Aumentar quantidade"
-                    >
-                      +
-                    </button>
+                  <div class="flex items-center gap-1.5 bg-surface rounded-full border border-primary/20 px-3 py-1.5 text-xs font-label font-bold text-deep-forest">
+                    <span class="material-symbols-outlined text-[16px]">verified</span>
+                    Peça única · 1 unidade
                   </div>
 
                   <div class="text-right">
