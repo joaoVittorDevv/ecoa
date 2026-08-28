@@ -126,11 +126,11 @@ function closeDropdown() {
         <!-- Desktop 'Meu Impacto' Button with Eco Icon -->
         <router-link
           to="/perfil"
-          class="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-raw-linen border border-primary/15 text-xs font-label uppercase tracking-wider text-primary font-bold hover:bg-surface-variant hover:border-primary/30 transition-all tactile-shadow"
+          class="hidden md:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-xs font-label uppercase tracking-wider font-bold transition-all tactile-shadow"
+          :class="$route.name === 'profile' ? 'bg-primary text-raw-linen border-primary' : 'bg-raw-linen text-primary border-primary/15 hover:bg-surface-variant hover:border-primary/30'"
           title="Ver meu impacto ambiental e pedidos"
-          active-class="bg-primary text-raw-linen border-primary"
         >
-          <span class="material-symbols-outlined text-[18px] text-deep-forest">eco</span>
+          <span class="material-symbols-outlined text-[18px]" :class="$route.name === 'profile' ? 'text-raw-linen' : 'text-deep-forest'">eco</span>
           <span>Meu Impacto</span>
         </router-link>
 

@@ -1,8 +1,9 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 
-const CART_STORAGE_KEY = 'ecoa_cart_items_v1'
-const CEP_STORAGE_KEY = 'ecoa_cart_cep_v1'
+// v2 inicia uma jornada limpa e ignora carrinhos/CEPs salvos pelas versões anteriores.
+const CART_STORAGE_KEY = 'ecoa_cart_items_v2'
+const CEP_STORAGE_KEY = 'ecoa_cart_cep_v2'
 
 export const useCartStore = defineStore('cart', () => {
   let savedCart = []

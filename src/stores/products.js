@@ -3,8 +3,20 @@ import { ref, computed } from 'vue'
 import initialProducts from '@/data/products.json'
 import initialCategories from '@/data/categories.json'
 
+const SOLD_STORAGE_KEY = 'ecoa_sold_product_ids_v1'
+
 export const useProductsStore = defineStore('products', () => {
-  const products = ref(initialProducts)
+  let savedSoldIds = []
+  try {
+    const parsed = JSON.parse(localStorage.getItem(SOLD_STORAGE_KEY) || '[]')
+    savedSoldIds = Array.isArray(parsed) ? parsed : []
+  } catch (e) {
+    localStorage.removeItem(SOLD_STORAGE_KEY)
+    console.error('Erro ao ler peças vendidas do localStorage:', e)
+  }
+
+  const soldProductIds = ref(savedSoldIds)
+  const products = computed(() => initialProducts.filter(product => !soldProductIds.value.includes(product.id)))
   const categories = ref(initialCategories)
   const searchQuery = ref('')
   const selectedCategory = ref('all')
@@ -48,6 +60,20 @@ export const useProductsStore = defineStore('products', () => {
     return products.value.find(p => p.id === id) || null
   }
 
+  function getProductIncludingSold(id) {
+    return initialProducts.find(p => p.id === id) || null
+  }
+
+  function isSold(id) {
+    return soldProductIds.value.includes(id)
+  }
+
+  function markAsSold(items) {
+    const ids = items.map(item => item.id || item.productId).filter(Boolean)
+    soldProductIds.value = [...new Set([...soldProductIds.value, ...ids])]
+    localStorage.setItem(SOLD_STORAGE_KEY, JSON.stringify(soldProductIds.value))
+  }
+
   function getProductBySlug(slug) {
     return products.value.find(p => p.slug === slug) || null
   }
@@ -85,9 +111,12 @@ export const useProductsStore = defineStore('products', () => {
     sortBy,
     filteredProducts,
     getProductById,
+    getProductIncludingSold,
+    isSold,
     getProductBySlug,
     getCategoryBySlug,
     getRelatedProducts,
+    markAsSold,
     resetFilters
   }
 })

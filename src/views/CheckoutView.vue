@@ -3,12 +3,14 @@ import { ref, computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { useCartStore } from '@/stores/cart'
 import { useCustomerStore } from '@/stores/customer'
+import { useProductsStore } from '@/stores/products'
 import OrderSummary from '@/components/checkout/OrderSummary.vue'
 import ImpactMetrics from '@/components/checkout/ImpactMetrics.vue'
 
 const router = useRouter()
 const cartStore = useCartStore()
 const customerStore = useCustomerStore()
+const productsStore = useProductsStore()
 
 // Current checkout step: 1 = Identificação & Endereço | 2 = Frete & Revisão | 3 = Pagamento
 const currentStep = ref(1)
@@ -241,6 +243,7 @@ function handleFinalizeOrder() {
     })
 
     orderCreated.value = newOrder
+    productsStore.markAsSold(newOrder.items)
     cartStore.clearCart()
     isSubmitting.value = false
     window.scrollTo({ top: 0, behavior: 'smooth' })

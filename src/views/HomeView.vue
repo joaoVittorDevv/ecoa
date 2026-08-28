@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from 'vue'
+import { computed, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import anime from 'animejs'
 import HeroSection from '@/components/home/HeroSection.vue'
@@ -11,7 +11,7 @@ import { useProductsStore } from '@/stores/products'
 const router = useRouter()
 const productsStore = useProductsStore()
 
-const latestProducts = productsStore.products.slice(0, 4)
+const latestProducts = computed(() => productsStore.products.slice(0, 4))
 
 onMounted(() => {
   anime({

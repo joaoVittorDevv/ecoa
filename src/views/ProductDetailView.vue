@@ -22,7 +22,8 @@ const cartStore = useCartStore()
 const customerStore = useCustomerStore()
 
 const productId = computed(() => props.id || route.params.id)
-const product = computed(() => productsStore.getProductById(productId.value) || productsStore.products[0])
+const product = computed(() => productsStore.getProductIncludingSold(productId.value) || productsStore.products[0])
+const isSold = computed(() => productsStore.isSold(product.value.id))
 
 const activeImage = ref('')
 const selectedSize = ref('')
@@ -62,6 +63,7 @@ function toggleFavorite() {
 }
 
 function addToCart() {
+  if (isSold.value) return
   const result = cartStore.addItem(product.value, selectedSize.value, 1)
   if (result.success) {
     toastType.value = 'success'
@@ -78,6 +80,7 @@ function addToCart() {
 }
 
 function buyNow() {
+  if (isSold.value) return
   cartStore.addItem(product.value, selectedSize.value, 1)
   router.push({ name: 'cart' })
 }
@@ -163,7 +166,7 @@ function scrollCarousel(direction) {
                 Origem: <strong class="text-walnut">{{ product.origin }}</strong>
               </span>
               <span class="text-terracotta bg-terracotta/10 px-2.5 py-1 rounded-full font-bold">
-                Exemplar Único (1 unidade)
+                {{ isSold ? 'Peça vendida' : 'Exemplar Único (1 unidade)' }}
               </span>
             </div>
           </div>
@@ -182,8 +185,8 @@ function scrollCarousel(direction) {
               </div>
             </div>
             
-            <span class="text-xs font-label text-deep-forest bg-deep-forest/10 px-2.5 py-1 rounded-md font-bold">
-              Peça Exclusiva (1 em estoque)
+            <span class="text-xs font-label px-2.5 py-1 rounded-md font-bold" :class="isSold ? 'text-terracotta bg-terracotta/10' : 'text-deep-forest bg-deep-forest/10'">
+              {{ isSold ? 'Indisponível · peça já vendida' : 'Peça Exclusiva (1 em estoque)' }}
             </span>
           </div>
 
@@ -219,18 +222,19 @@ function scrollCarousel(direction) {
           <div class="flex flex-col sm:flex-row gap-3 pt-2">
             <button
               @click="addToCart"
-              :disabled="isInCart"
+              :disabled="isInCart || isSold"
               class="flex-1 bg-primary text-raw-linen hover:bg-primary-container active:scale-98 transition-all py-4 px-6 rounded-full font-label text-sm uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-md shadow-primary/20 cursor-pointer disabled:bg-primary/55 disabled:cursor-not-allowed disabled:shadow-none"
             >
-              <span class="material-symbols-outlined text-[20px]">{{ isInCart ? 'check_circle' : 'shopping_bag' }}</span>
-              <span>{{ isInCart ? 'Peça já está na Sacola' : 'Adicionar à Sacola' }}</span>
+              <span class="material-symbols-outlined text-[20px]">{{ isSold || isInCart ? 'check_circle' : 'shopping_bag' }}</span>
+              <span>{{ isSold ? 'Peça Vendida' : isInCart ? 'Peça já está na Sacola' : 'Adicionar à Sacola' }}</span>
             </button>
 
             <button
               @click="buyNow"
-              class="sm:w-auto bg-terracotta text-raw-linen hover:opacity-90 active:scale-98 transition-all py-4 px-8 rounded-full font-label text-sm uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-md shadow-terracotta/20 cursor-pointer"
+              :disabled="isSold"
+              class="sm:w-auto bg-terracotta text-raw-linen hover:opacity-90 active:scale-98 transition-all py-4 px-8 rounded-full font-label text-sm uppercase tracking-wider font-bold inline-flex items-center justify-center gap-2 shadow-md shadow-terracotta/20 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed disabled:shadow-none"
             >
-              <span>Comprar Agora</span>
+              <span>{{ isSold ? 'Indisponível' : 'Comprar Agora' }}</span>
             </button>
           </div>
 
