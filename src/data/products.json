@@ -5,19 +5,21 @@
     "slug": "trench-coat-classico",
     "categorySlug": "alfaiataria",
     "era": "Anos 80",
-    "price": 340.00,
-    "originalPrice": 850.00,
+    "stock": 1,
+    "price": 340.0,
+    "originalPrice": 850.0,
     "size": "M",
     "condition": "Excelente (Sem avarias)",
-    "origin": "Londres, Reino Unido",
+    "origin": "Largo da Ordem, Curitiba — PR",
     "material": "100% Gabardine de Algodão",
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuA_96pAgpMsCgTLEbvznNKF6bZ3mvLbyrCiy3zDrX9MT0XCYiXj2DPJqNfgxIGjNWx8P8y-3CmcTfVIZ_H-SITnDLNbXSvQw61DIpocgKLBAa3chH4wMkii5rsTPBwlVglpUFi2xbR5jOJ5Fwp3l1sYz1Ku1A3fCt_NQ6qcyaOHcAmJxiK324D4xjjNMXsp98nUxYWP4Vd2B4CJfihRkcO9OwV3s4CEAL5hUkPQckj0FI1cIav_ti7M",
     "gallery": [
       "https://lh3.googleusercontent.com/aida-public/AB6AXuA_96pAgpMsCgTLEbvznNKF6bZ3mvLbyrCiy3zDrX9MT0XCYiXj2DPJqNfgxIGjNWx8P8y-3CmcTfVIZ_H-SITnDLNbXSvQw61DIpocgKLBAa3chH4wMkii5rsTPBwlVglpUFi2xbR5jOJ5Fwp3l1sYz1Ku1A3fCt_NQ6qcyaOHcAmJxiK324D4xjjNMXsp98nUxYWP4Vd2B4CJfihRkcO9OwV3s4CEAL5hUkPQckj0FI1cIav_ti7M",
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCf8Q_JaClHKGflI8HQ6bEMjBMvzcbFNn_iHen2Anyx54MxeKWvv5afod3GRMXS3K3i87jVAaonIOtfvsF1T7E6ky70JIZBMXmToRjT9BFRiIhELOM3RkHvswSX76Zeola5ZectCbpg-Nq4ov6QBpPCBSayyS48D4hcX6YOwDvfP1sVjQoKwsbN2Rk0xeZx-OCg4oSNXjp9rdXIz9jVwxSq61qYdHpnVhIXqOWCDrmQAcbwT6uESsrO"
+      "/products/prod-1-2.jpg",
+      "/products/prod-1-3.jpg"
     ],
     "hasStoryBadge": true,
-    "story": "Garimpado em um tradicional brechó de Notting Hill, este trench coat atravessou quatro décadas mantendo seu corte estruturado impecável. Pertenceu a uma arquiteta que viajou pela Europa nos anos 80.",
+    "story": "Garimpado na tradicional Feira do Largo da Ordem em Curitiba. Este trench coat atravessou quatro décadas mantendo seu corte estruturado impecável e tecido resistente ao frio do sul.",
     "measurements": {
       "bust": "104 cm",
       "waist": "98 cm",
@@ -25,8 +27,8 @@
       "sleeve": "62 cm"
     },
     "impact": {
-      "waterSavedLiters": 2700,
-      "co2AvoidedKg": 6.8
+      "waterSavedLiters": 4200,
+      "co2AvoidedKg": 8.2
     }
   },
   {
@@ -35,18 +37,21 @@
     "slug": "jaqueta-jeans-oversized-90s",
     "categorySlug": "anos-90",
     "era": "Anos 90",
-    "price": 180.00,
-    "originalPrice": 420.00,
+    "stock": 1,
+    "price": 180.0,
+    "originalPrice": 420.0,
     "size": "G",
-    "condition": "Vintage com pátina natural",
-    "origin": "São Paulo, Brasil",
+    "condition": "Boa (Marcas leves do tempo)",
+    "origin": "Vila Madalena, São Paulo — SP",
     "material": "100% Algodão Denim Encorpado",
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuA_eB8w_N5_2yXMXIJQeKTHJSewTgX-LdVULu1hCOy9fsTAc9F4sesjiM447SaZgSGhLNU2EVGtWlu2d3S-Y23cHFLt_ynPDW4kcNMYQqc0G6yDcr2U7CHZzJk_e2W_4YidrEi-4PZbkDys8DzcvEirXaJOF-3FVyJ_-b9CFQ2Zi6rmwxcUXSPfBfSwxbgBzxLGLtaY_4pHq2jL2KbdrnpKeUMe42u_jkR5FNvs9N5tl75kaZYXMvYD",
     "gallery": [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuA_eB8w_N5_2yXMXIJQeKTHJSewTgX-LdVULu1hCOy9fsTAc9F4sesjiM447SaZgSGhLNU2EVGtWlu2d3S-Y23cHFLt_ynPDW4kcNMYQqc0G6yDcr2U7CHZzJk_e2W_4YidrEi-4PZbkDys8DzcvEirXaJOF-3FVyJ_-b9CFQ2Zi6rmwxcUXSPfBfSwxbgBzxLGLtaY_4pHq2jL2KbdrnpKeUMe42u_jkR5FNvs9N5tl75kaZYXMvYD"
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuA_eB8w_N5_2yXMXIJQeKTHJSewTgX-LdVULu1hCOy9fsTAc9F4sesjiM447SaZgSGhLNU2EVGtWlu2d3S-Y23cHFLt_ynPDW4kcNMYQqc0G6yDcr2U7CHZzJk_e2W_4YidrEi-4PZbkDys8DzcvEirXaJOF-3FVyJ_-b9CFQ2Zi6rmwxcUXSPfBfSwxbgBzxLGLtaY_4pHq2jL2KbdrnpKeUMe42u_jkR5FNvs9N5tl75kaZYXMvYD",
+      "/products/prod-2-2.jpg",
+      "/products/prod-2-3.jpg"
     ],
     "hasStoryBadge": true,
-    "story": "Um ícone da cultura grunge dos anos 90. O desgaste natural no colarinho e cotovelos conta histórias de festivais de rock e noites inesquecíveis.",
+    "story": "Ícone da cena alternativa paulistana dos anos 90 garimpado na Vila Madalena. O desgaste autêntico no colarinho e cotovelos conta histórias de noites de música e atitude urbana.",
     "measurements": {
       "bust": "118 cm",
       "waist": "110 cm",
@@ -55,7 +60,7 @@
     },
     "impact": {
       "waterSavedLiters": 3800,
-      "co2AvoidedKg": 8.5
+      "co2AvoidedKg": 7.8
     }
   },
   {
@@ -64,18 +69,21 @@
     "slug": "vestido-slip-seda-minimalista",
     "categorySlug": "seda-linho",
     "era": "Anos 90",
-    "price": 290.00,
-    "originalPrice": 650.00,
+    "stock": 1,
+    "price": 290.0,
+    "originalPrice": 650.0,
     "size": "P",
-    "condition": "Excelente",
-    "origin": "Paris, França",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Centro Histórico, Paraty — RJ",
     "material": "100% Seda Pura com Toque Acetinado",
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuDEXTd5TDvPgXkiOtmw0mAA52uMqhTPX1a7QXV-SscF48pfmoLESFGJsz7fKyOv5l7gAUKutFp10y29bscuUZU57D-hpoMowDU2Fg2VBure4G4Mh27xr3Zuf0lFrsucS4KNro8AO-ya8_8w2fyd_CPBkYyTr1InQFvcTdo-JSj7Bf5uHHaaKSy9wA3P6tWhjvB4VaRJ4w3rKls-KeZr8LxwH-cTDAdqhFgzRHe5Auqaf9vJZSTZbqsq",
     "gallery": [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuDEXTd5TDvPgXkiOtmw0mAA52uMqhTPX1a7QXV-SscF48pfmoLESFGJsz7fKyOv5l7gAUKutFp10y29bscuUZU57D-hpoMowDU2Fg2VBure4G4Mh27xr3Zuf0lFrsucS4KNro8AO-ya8_8w2fyd_CPBkYyTr1InQFvcTdo-JSj7Bf5uHHaaKSy9wA3P6tWhjvB4VaRJ4w3rKls-KeZr8LxwH-cTDAdqhFgzRHe5Auqaf9vJZSTZbqsq"
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuDEXTd5TDvPgXkiOtmw0mAA52uMqhTPX1a7QXV-SscF48pfmoLESFGJsz7fKyOv5l7gAUKutFp10y29bscuUZU57D-hpoMowDU2Fg2VBure4G4Mh27xr3Zuf0lFrsucS4KNro8AO-ya8_8w2fyd_CPBkYyTr1InQFvcTdo-JSj7Bf5uHHaaKSy9wA3P6tWhjvB4VaRJ4w3rKls-KeZr8LxwH-cTDAdqhFgzRHe5Auqaf9vJZSTZbqsq",
+      "/products/prod-3-2.jpg",
+      "/products/prod-3-3.jpg"
     ],
     "hasStoryBadge": true,
-    "story": "Fluidez poética em tom sálvia suave. Corte em viés perfeito que desenha o corpo com leveza, preservado com todo o carinho desde meados dos anos 90.",
+    "story": "Fluidez poética em tom verde sálvia garimpado no Centro Histórico de Paraty. O corte em viés perfeito desenha a silhueta com a leveza da brisa litorânea.",
     "measurements": {
       "bust": "88 cm",
       "waist": "74 cm",
@@ -83,8 +91,8 @@
       "sleeve": "Alças finas ajustáveis"
     },
     "impact": {
-      "waterSavedLiters": 1900,
-      "co2AvoidedKg": 4.2
+      "waterSavedLiters": 2100,
+      "co2AvoidedKg": 4.5
     }
   },
   {
@@ -93,18 +101,21 @@
     "slug": "sueter-trico-terracota-artesanal",
     "categorySlug": "anos-70",
     "era": "Anos 70",
-    "price": 210.00,
-    "originalPrice": 480.00,
+    "stock": 1,
+    "price": 210.0,
+    "originalPrice": 480.0,
     "size": "M",
-    "condition": "Excelente",
-    "origin": "Minas Gerais, Brasil",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Ouro Preto — MG",
     "material": "100% Lã Natural Tinta com Pigmento Orgânico",
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAd4YqgwT-LCSq_g3CgKNydyZWY_dFtP_ZI3ovGkwLBAMqTl7jFLBz1LcDfonBFQEDsv8c0xI17wY8rsPK1pRuF81o0EoCGyRRv5C9w3zDzxyx-QvxKGAW_eZ69g2c4QBDiHj_wwzBlZ0eMwI-zP4Qia9BGyl58B3jvPx5vZBXhM_qtrEUeNL9W-fR9RFVOoJohgwYqt3CltpKA5-_4LxCb9tVRDx8DXNIQTIq9I8wklrvbEgWQ1Jl0",
     "gallery": [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuAd4YqgwT-LCSq_g3CgKNydyZWY_dFtP_ZI3ovGkwLBAMqTl7jFLBz1LcDfonBFQEDsv8c0xI17wY8rsPK1pRuF81o0EoCGyRRv5C9w3zDzxyx-QvxKGAW_eZ69g2c4QBDiHj_wwzBlZ0eMwI-zP4Qia9BGyl58B3jvPx5vZBXhM_qtrEUeNL9W-fR9RFVOoJohgwYqt3CltpKA5-_4LxCb9tVRDx8DXNIQTIq9I8wklrvbEgWQ1Jl0"
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuAd4YqgwT-LCSq_g3CgKNydyZWY_dFtP_ZI3ovGkwLBAMqTl7jFLBz1LcDfonBFQEDsv8c0xI17wY8rsPK1pRuF81o0EoCGyRRv5C9w3zDzxyx-QvxKGAW_eZ69g2c4QBDiHj_wwzBlZ0eMwI-zP4Qia9BGyl58B3jvPx5vZBXhM_qtrEUeNL9W-fR9RFVOoJohgwYqt3CltpKA5-_4LxCb9tVRDx8DXNIQTIq9I8wklrvbEgWQ1Jl0",
+      "/products/prod-4-2.jpg",
+      "/products/prod-4-3.jpg"
     ],
     "hasStoryBadge": true,
-    "story": "Trama manual encorpada com pontos volumosos que aquecem com afeto. Traz o calor da terra e o design acolhedor do movimento artesanal dos anos 70.",
+    "story": "Trama manual encorpada com pontos trançados herdada de uma família de tecelãs de Ouro Preto. Traz o calor da terra e o design acolhedor do artesanato mineiro dos anos 70.",
     "measurements": {
       "bust": "102 cm",
       "waist": "96 cm",
@@ -112,28 +123,31 @@
       "sleeve": "60 cm"
     },
     "impact": {
-      "waterSavedLiters": 2200,
-      "co2AvoidedKg": 5.1
+      "waterSavedLiters": 2400,
+      "co2AvoidedKg": 5.4
     }
   },
   {
     "id": "prod-5",
-    "name": "Blazer de Lã Italiano Estruturado",
-    "slug": "blazer-la-italiano-estruturado",
+    "name": "Blazer de Lã Batida Estruturado",
+    "slug": "blazer-la-batida-estruturado",
     "categorySlug": "alfaiataria",
     "era": "Anos 80",
-    "price": 380.00,
-    "originalPrice": 920.00,
+    "stock": 1,
+    "price": 380.0,
+    "originalPrice": 920.0,
     "size": "G",
-    "condition": "Impecável",
-    "origin": "Milão, Itália",
-    "material": "100% Lã Fria e Forro de Cupro",
+    "condition": "Impecável (Como nova)",
+    "origin": "Petrópolis — RJ",
+    "material": "100% Lã Fria e Forro de Seda",
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCf8Q_JaClHKGflI8HQ6bEMjBMvzcbFNn_iHen2Anyx54MxeKWvv5afod3GRMXS3K3i87jVAaonIOtfvsF1T7E6ky70JIZBMXmToRjT9BFRiIhELOM3RkHvswSX76Zeola5ZectCbpg-Nq4ov6QBpPCBSayyS48D4hcX6YOwDvfP1sVjQoKwsbN2Rk0xeZx-OCg4oSNXjp9rdXIz9jVwxSq61qYdHpnVhIXqOWCDrmQAcbwT6uESsrO",
     "gallery": [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCf8Q_JaClHKGflI8HQ6bEMjBMvzcbFNn_iHen2Anyx54MxeKWvv5afod3GRMXS3K3i87jVAaonIOtfvsF1T7E6ky70JIZBMXmToRjT9BFRiIhELOM3RkHvswSX76Zeola5ZectCbpg-Nq4ov6QBpPCBSayyS48D4hcX6YOwDvfP1sVjQoKwsbN2Rk0xeZx-OCg4oSNXjp9rdXIz9jVwxSq61qYdHpnVhIXqOWCDrmQAcbwT6uESsrO"
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCf8Q_JaClHKGflI8HQ6bEMjBMvzcbFNn_iHen2Anyx54MxeKWvv5afod3GRMXS3K3i87jVAaonIOtfvsF1T7E6ky70JIZBMXmToRjT9BFRiIhELOM3RkHvswSX76Zeola5ZectCbpg-Nq4ov6QBpPCBSayyS48D4hcX6YOwDvfP1sVjQoKwsbN2Rk0xeZx-OCg4oSNXjp9rdXIz9jVwxSq61qYdHpnVhIXqOWCDrmQAcbwT6uESsrO",
+      "/products/prod-5-2.jpg",
+      "/products/prod-5-3.jpg"
     ],
     "hasStoryBadge": true,
-    "story": "Alfaiataria impecável costurada em Milão no auge da elegância dos anos 80. Ombros imponentes e caimento que valoriza qualquer composição.",
+    "story": "Alfaiataria impecável preservada em um casarão histórico de Petrópolis. Ombros estruturados marcantes e caimento pesado que expressa elegância clássica atemporal.",
     "measurements": {
       "bust": "112 cm",
       "waist": "104 cm",
@@ -141,28 +155,31 @@
       "sleeve": "65 cm"
     },
     "impact": {
-      "waterSavedLiters": 3100,
-      "co2AvoidedKg": 7.4
+      "waterSavedLiters": 3600,
+      "co2AvoidedKg": 7.6
     }
   },
   {
     "id": "prod-6",
-    "name": "Camisa de Seda Estampa Vintage 70s",
-    "slug": "camisa-seda-estampa-vintage-70s",
+    "name": "Camisa de Seda Estampa Psicodélica 70s",
+    "slug": "camisa-seda-estampa-psicodelica-70s",
     "categorySlug": "anos-70",
     "era": "Anos 70",
-    "price": 230.00,
-    "originalPrice": 510.00,
+    "stock": 1,
+    "price": 230.0,
+    "originalPrice": 510.0,
     "size": "M",
-    "condition": "Excelente",
-    "origin": "Lisboa, Portugal",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Alto da Sé, Olinda — PE",
     "material": "100% Seda Pura Estampada",
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCxSHjQBc_t8uxxf_cM4Oj014lyDUkdfLkq0z5Qg7eWnFAFJXRcoWSrP9uR4ZaL6q8MnDqdr632H_f0GAkLyDp8wDLvE_JRTANLr1NIvghNfczNjMpyk2LCJT0RYzZhqKeYhvvgj4sCA0dRmt-J8rQQqDQ0UJKtJpsFwoXJ3kMvlPyzXJfx9l9P2nQ57a0eugX2wnakoXqfz6U--NAR-2R2j6BdITQFSQdw6XN5Q0xsKxlWfH0zicO7",
     "gallery": [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCxSHjQBc_t8uxxf_cM4Oj014lyDUkdfLkq0z5Qg7eWnFAFJXRcoWSrP9uR4ZaL6q8MnDqdr632H_f0GAkLyDp8wDLvE_JRTANLr1NIvghNfczNjMpyk2LCJT0RYzZhqKeYhvvgj4sCA0dRmt-J8rQQqDQ0UJKtJpsFwoXJ3kMvlPyzXJfx9l9P2nQ57a0eugX2wnakoXqfz6U--NAR-2R2j6BdITQFSQdw6XN5Q0xsKxlWfH0zicO7"
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCxSHjQBc_t8uxxf_cM4Oj014lyDUkdfLkq0z5Qg7eWnFAFJXRcoWSrP9uR4ZaL6q8MnDqdr632H_f0GAkLyDp8wDLvE_JRTANLr1NIvghNfczNjMpyk2LCJT0RYzZhqKeYhvvgj4sCA0dRmt-J8rQQqDQ0UJKtJpsFwoXJ3kMvlPyzXJfx9l9P2nQ57a0eugX2wnakoXqfz6U--NAR-2R2j6BdITQFSQdw6XN5Q0xsKxlWfH0zicO7",
+      "/products/prod-6-2.jpg",
+      "/products/prod-6-3.jpg"
     ],
     "hasStoryBadge": true,
-    "story": "Padronagem psicodélica sutil em tons de terracota, oliva e mostarda. Uma relíquia preservada que irradia personalidade e liberdade estética.",
+    "story": "Padronagem geométrica psicodélica em tons quentes de terracota e mostarda garimpada no Alto da Sé em Olinda. Uma relíquia autêntica da efervescência cultural dos anos 70.",
     "measurements": {
       "bust": "100 cm",
       "waist": "94 cm",
@@ -170,8 +187,8 @@
       "sleeve": "59 cm"
     },
     "impact": {
-      "waterSavedLiters": 1800,
-      "co2AvoidedKg": 3.9
+      "waterSavedLiters": 2000,
+      "co2AvoidedKg": 4.1
     }
   },
   {
@@ -180,18 +197,21 @@
     "slug": "blusa-perola-seda-natural",
     "categorySlug": "seda-linho",
     "era": "Anos 90",
-    "price": 260.00,
-    "originalPrice": 590.00,
+    "stock": 1,
+    "price": 260.0,
+    "originalPrice": 590.0,
     "size": "M",
-    "condition": "Excelente",
-    "origin": "Florença, Itália",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Tiradentes — MG",
     "material": "100% Crepe de Seda",
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCoUs6q0b7nh0YxlWG0PEa1aAkJ2iJGHPLXbWmUZWVzIig-2EuREWFgVBjPNtjZnLpsDiOCeQAoX6ECI70BGYRHxA18VFqlOcMkn6EF4Gqr41QqQvd1C-iyhVlwaXgIHCQmh3ifqmDS9nqU-WAoK9kywBa_j2RL_mGnU3iOhOqzsGaumEW790CQW8kHegvXyTDrPGbCdsBpAe9kodgRNBYDCa9HVUrNuyNI4TF5yqeVKr5klEEZa60G",
     "gallery": [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCoUs6q0b7nh0YxlWG0PEa1aAkJ2iJGHPLXbWmUZWVzIig-2EuREWFgVBjPNtjZnLpsDiOCeQAoX6ECI70BGYRHxA18VFqlOcMkn6EF4Gqr41QqQvd1C-iyhVlwaXgIHCQmh3ifqmDS9nqU-WAoK9kywBa_j2RL_mGnU3iOhOqzsGaumEW790CQW8kHegvXyTDrPGbCdsBpAe9kodgRNBYDCa9HVUrNuyNI4TF5yqeVKr5klEEZa60G"
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuCoUs6q0b7nh0YxlWG0PEa1aAkJ2iJGHPLXbWmUZWVzIig-2EuREWFgVBjPNtjZnLpsDiOCeQAoX6ECI70BGYRHxA18VFqlOcMkn6EF4Gqr41QqQvd1C-iyhVlwaXgIHCQmh3ifqmDS9nqU-WAoK9kywBa_j2RL_mGnU3iOhOqzsGaumEW790CQW8kHegvXyTDrPGbCdsBpAe9kodgRNBYDCa9HVUrNuyNI4TF5yqeVKr5klEEZa60G",
+      "/products/prod-7-2.jpg",
+      "/products/prod-7-3.jpg"
     ],
     "hasStoryBadge": true,
-    "story": "Toque sutil de brilho suave pérola com botões de madrepérola originais. Uma peça de luxo silencioso para transitar entre o casual refinado e ocasiões especiais.",
+    "story": "Toque sedoso em tom marfim suave com botões em madrepérola originais encontrados em Tiradentes. Elegância minimalista com acabamento manual refinado.",
     "measurements": {
       "bust": "98 cm",
       "waist": "92 cm",
@@ -199,8 +219,8 @@
       "sleeve": "58 cm"
     },
     "impact": {
-      "waterSavedLiters": 2100,
-      "co2AvoidedKg": 4.5
+      "waterSavedLiters": 2200,
+      "co2AvoidedKg": 4.6
     }
   },
   {
@@ -209,18 +229,21 @@
     "slug": "blazer-linho-cru-minimalista",
     "categorySlug": "minimalista",
     "era": "Anos 90",
-    "price": 310.00,
-    "originalPrice": 720.00,
+    "stock": 1,
+    "price": 310.0,
+    "originalPrice": 720.0,
     "size": "M",
-    "condition": "Excelente",
-    "origin": "Porto, Portugal",
-    "material": "100% Linho Europeu Puro",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Blumenau — SC",
+    "material": "100% Linho Puro Rústico",
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuA9sGaNvvwHr-QRRie9c7PH3q6XSr8iKzk9rwEn-Az8Ruo5F-8PoXoXXwIGge27ZLizDnn6W8gNPYb4BCm6ep5ssAKtdA47EFBMhEKDa4x04QsXGaTg78WyR5c86aQkruyK82pPo6SGvo3JNU3G5aekhHoCCgjmLRJIZ6a_ay_79kn48mWMyd0UOvjAFqN3-LZzHkqTIbq6xBe_v4Jfly6GzRvMHLaPODcSjXMXhcB-7NWzus1M8cJV",
     "gallery": [
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuA9sGaNvvwHr-QRRie9c7PH3q6XSr8iKzk9rwEn-Az8Ruo5F-8PoXoXXwIGge27ZLizDnn6W8gNPYb4BCm6ep5ssAKtdA47EFBMhEKDa4x04QsXGaTg78WyR5c86aQkruyK82pPo6SGvo3JNU3G5aekhHoCCgjmLRJIZ6a_ay_79kn48mWMyd0UOvjAFqN3-LZzHkqTIbq6xBe_v4Jfly6GzRvMHLaPODcSjXMXhcB-7NWzus1M8cJV"
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuA9sGaNvvwHr-QRRie9c7PH3q6XSr8iKzk9rwEn-Az8Ruo5F-8PoXoXXwIGge27ZLizDnn6W8gNPYb4BCm6ep5ssAKtdA47EFBMhEKDa4x04QsXGaTg78WyR5c86aQkruyK82pPo6SGvo3JNU3G5aekhHoCCgjmLRJIZ6a_ay_79kn48mWMyd0UOvjAFqN3-LZzHkqTIbq6xBe_v4Jfly6GzRvMHLaPODcSjXMXhcB-7NWzus1M8cJV",
+      "/products/prod-8-2.jpg",
+      "/products/prod-8-3.jpg"
     ],
     "hasStoryBadge": true,
-    "story": "Textura natural de linho rústico sem tingimento químico. Conforto térmico inigualável e atemporalidade estética para vestir durante décadas.",
+    "story": "Textura natural de linho rústico sem alvejamento químico garimpado no Vale do Itajaí em Blumenau. Conforto térmico nobre e silhueta pura e atemporal.",
     "measurements": {
       "bust": "106 cm",
       "waist": "100 cm",
@@ -229,7 +252,700 @@
     },
     "impact": {
       "waterSavedLiters": 3400,
-      "co2AvoidedKg": 7.0
+      "co2AvoidedKg": 6.9
+    }
+  },
+  {
+    "id": "prod-9",
+    "name": "Colete de Alfaiataria Risca de Giz",
+    "slug": "colete-alfaiataria-risca-de-giz",
+    "categorySlug": "alfaiataria",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 190.0,
+    "originalPrice": 460.0,
+    "size": "M",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Bixiga, São Paulo — SP",
+    "material": "100% Lã Fria com Forro de Viscose",
+    "image": "/products/prod-9-1.jpg",
+    "gallery": [
+      "/products/prod-9-1.jpg",
+      "/products/prod-9-2.jpg",
+      "/products/prod-9-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Garimpado em uma alfaiataria tradicional do Bixiga, este colete risca de giz traz o corte acinturado clássico com fivela traseira regulável e botões de osso.",
+    "measurements": {
+      "bust": "96 cm",
+      "waist": "88 cm",
+      "length": "56 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 2100,
+      "co2AvoidedKg": 4.8
+    }
+  },
+  {
+    "id": "prod-10",
+    "name": "Calça de Alfaiataria Pregas Duplas",
+    "slug": "calca-alfaiataria-pregas-duplas",
+    "categorySlug": "alfaiataria",
+    "era": "Anos 80",
+    "stock": 1,
+    "price": 220.0,
+    "originalPrice": 520.0,
+    "size": "G",
+    "condition": "Muito boa (Mínimos sinais de uso)",
+    "origin": "Moinhos de Vento, Porto Alegre — RS",
+    "material": "100% Lã Tropical e Algodão",
+    "image": "/products/prod-10-1.jpg",
+    "gallery": [
+      "/products/prod-10-1.jpg",
+      "/products/prod-10-2.jpg",
+      "/products/prod-10-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Corte de alfaiataria gaúcha clássica com pregas frontais duplas e caimento amplo e encorpado. Um achado que combina estrutura aristocrática e conforto térmico.",
+    "measurements": {
+      "bust": "N/A",
+      "waist": "86 cm",
+      "length": "108 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 2600,
+      "co2AvoidedKg": 5.8
+    }
+  },
+  {
+    "id": "prod-11",
+    "name": "Sobretudo de Lã Pura Caramelo",
+    "slug": "sobretudo-la-pura-caramelo",
+    "categorySlug": "alfaiataria",
+    "era": "Anos 80",
+    "stock": 1,
+    "price": 440.0,
+    "originalPrice": 1100.0,
+    "size": "G",
+    "condition": "Impecável (Como nova)",
+    "origin": "Serra Gaúcha, Caxias do Sul — RS",
+    "material": "100% Lã Batida Pura e Forro Acetinado",
+    "image": "/products/prod-11-1.jpg",
+    "gallery": [
+      "/products/prod-11-1.jpg",
+      "/products/prod-11-2.jpg",
+      "/products/prod-11-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Produzido nos teares tradicionais da serra gaúcha no auge dos anos 80. Lã pesada e densa em tom caramelo nobre com forro de cetim preservado em estado de loja.",
+    "measurements": {
+      "bust": "116 cm",
+      "waist": "108 cm",
+      "length": "118 cm",
+      "sleeve": "66 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 5200,
+      "co2AvoidedKg": 8.9
+    }
+  },
+  {
+    "id": "prod-12",
+    "name": "Blazer Oversized Abotoamento Duplo",
+    "slug": "blazer-oversized-abotoamento-duplo",
+    "categorySlug": "alfaiataria",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 320.0,
+    "originalPrice": 780.0,
+    "size": "M",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Savassi, Belo Horizonte — MG",
+    "material": "100% Sarja de Lã Fria",
+    "image": "/products/prod-12-1.jpg",
+    "gallery": [
+      "/products/prod-12-1.jpg",
+      "/products/prod-12-2.jpg",
+      "/products/prod-12-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Modelagem boxy com abotoamento duplo icônica dos anos 90, resgatada no charmoso bairro da Savassi. Ombreiras marcantes e caimento solto contemporâneo.",
+    "measurements": {
+      "bust": "110 cm",
+      "waist": "102 cm",
+      "length": "78 cm",
+      "sleeve": "63 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 3300,
+      "co2AvoidedKg": 7.1
+    }
+  },
+  {
+    "id": "prod-13",
+    "name": "Calça Flare de Veludo Cotelê Mostarda",
+    "slug": "calca-flare-veludo-cotele-mostarda",
+    "categorySlug": "anos-70",
+    "era": "Anos 70",
+    "stock": 1,
+    "price": 240.0,
+    "originalPrice": 560.0,
+    "size": "P",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Pelourinho, Salvador — BA",
+    "material": "100% Algodão Veludo Cotelê",
+    "image": "/products/prod-13-1.jpg",
+    "gallery": [
+      "/products/prod-13-1.jpg",
+      "/products/prod-13-2.jpg",
+      "/products/prod-13-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Cintura alta e boca de sino marcante em veludo cotelê denso na tonalidade mostarda solar da Bahia. Garimpada próximo às ladeiras históricas de Salvador.",
+    "measurements": {
+      "bust": "N/A",
+      "waist": "72 cm",
+      "length": "106 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 2900,
+      "co2AvoidedKg": 6.2
+    }
+  },
+  {
+    "id": "prod-14",
+    "name": "Poncho de Lã Artesanal Étnico",
+    "slug": "poncho-la-artesanal-etnico",
+    "categorySlug": "anos-70",
+    "era": "Anos 70",
+    "stock": 1,
+    "price": 280.0,
+    "originalPrice": 620.0,
+    "size": "M",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Alto Paraíso, Chapada dos Veadeiros — GO",
+    "material": "100% Lã Rústica Fiada à Mão",
+    "image": "/products/prod-14-1.jpg",
+    "gallery": [
+      "/products/prod-14-1.jpg",
+      "/products/prod-14-2.jpg",
+      "/products/prod-14-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Peça de tear manual com franjas longas e motivos geométricos em tons de terra e cerrado. Um tesouro artesanal que aquece corpo e alma com pura energia livre dos anos 70.",
+    "measurements": {
+      "bust": "130 cm",
+      "waist": "130 cm",
+      "length": "85 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 3100,
+      "co2AvoidedKg": 6.5
+    }
+  },
+  {
+    "id": "prod-15",
+    "name": "Bata Boho Bordada em Linho",
+    "slug": "bata-boho-bordada-linho",
+    "categorySlug": "anos-70",
+    "era": "Anos 70",
+    "stock": 1,
+    "price": 195.0,
+    "originalPrice": 450.0,
+    "size": "P",
+    "condition": "Muito boa (Mínimos sinais de uso)",
+    "origin": "Centro Histórico, Pirenópolis — GO",
+    "material": "100% Linho com Bordados em Algodão",
+    "image": "/products/prod-15-1.jpg",
+    "gallery": [
+      "/products/prod-15-1.jpg",
+      "/products/prod-15-2.jpg",
+      "/products/prod-15-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Bordados botânicos minuciosos em ponto cheio sobre linho natural cru. Resgatada de um ateliê de costura afetiva no coração colonial de Pirenópolis.",
+    "measurements": {
+      "bust": "94 cm",
+      "waist": "90 cm",
+      "length": "60 cm",
+      "sleeve": "56 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 2000,
+      "co2AvoidedKg": 4.2
+    }
+  },
+  {
+    "id": "prod-16",
+    "name": "Vestido Longo Floral Terra Vintage",
+    "slug": "vestido-longo-floral-terra-vintage",
+    "categorySlug": "anos-70",
+    "era": "Anos 70",
+    "stock": 1,
+    "price": 310.0,
+    "originalPrice": 740.0,
+    "size": "M",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "São Cristóvão — SE",
+    "material": "100% Algodão Macio Estampado",
+    "image": "/products/prod-16-1.jpg",
+    "gallery": [
+      "/products/prod-16-1.jpg",
+      "/products/prod-16-2.jpg",
+      "/products/prod-16-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Estampa botânica terrosa com babados delicados na barra e mangas sino. Preservado com zelo por mais de 50 anos na quarta cidade mais antiga do Brasil.",
+    "measurements": {
+      "bust": "98 cm",
+      "waist": "78 cm",
+      "length": "134 cm",
+      "sleeve": "58 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 3200,
+      "co2AvoidedKg": 6.8
+    }
+  },
+  {
+    "id": "prod-17",
+    "name": "Macacão Jeans Denim Stone Washed",
+    "slug": "macacao-jeans-denim-stone-washed",
+    "categorySlug": "anos-90",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 260.0,
+    "originalPrice": 590.0,
+    "size": "M",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Cambuí, Campinas — SP",
+    "material": "100% Algodão Denim Lavagem Stone",
+    "image": "/products/prod-17-1.jpg",
+    "gallery": [
+      "/products/prod-17-1.jpg",
+      "/products/prod-17-2.jpg",
+      "/products/prod-17-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Clássico utilitário anos 90 com fechamento por zíper frontal e corte reto relaxado. A lavagem stone washed confere um tom azul claro perfeito e textura macia.",
+    "measurements": {
+      "bust": "102 cm",
+      "waist": "84 cm",
+      "length": "145 cm",
+      "sleeve": "57 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 4500,
+      "co2AvoidedKg": 8.5
+    }
+  },
+  {
+    "id": "prod-18",
+    "name": "Camiseta Vintage Rock Graphic Tee",
+    "slug": "camiseta-vintage-rock-graphic-tee",
+    "categorySlug": "anos-90",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 130.0,
+    "originalPrice": 310.0,
+    "size": "G",
+    "condition": "Boa (Marcas leves do tempo)",
+    "origin": "Asa Norte, Brasília — DF",
+    "material": "100% Algodão Fio Penteado",
+    "image": "/products/prod-18-1.jpg",
+    "gallery": [
+      "/products/prod-18-1.jpg",
+      "/products/prod-18-2.jpg",
+      "/products/prod-18-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Costura simples single-stitch original dos anos 90 com estampa desgastada pelo tempo. Garimpada em feira independente de vinis e antiguidades na capital federal.",
+    "measurements": {
+      "bust": "114 cm",
+      "waist": "112 cm",
+      "length": "73 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 1900,
+      "co2AvoidedKg": 4.0
+    }
+  },
+  {
+    "id": "prod-19",
+    "name": "Jaqueta Corta-Vento Colorblock 90s",
+    "slug": "jaqueta-corta-vento-colorblock-90s",
+    "categorySlug": "anos-90",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 210.0,
+    "originalPrice": 490.0,
+    "size": "G",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Lagoa da Conceição, Florianópolis — SC",
+    "material": "100% Poliamida Ripstop Vintage",
+    "image": "/products/prod-19-1.jpg",
+    "gallery": [
+      "/products/prod-19-1.jpg",
+      "/products/prod-19-2.jpg",
+      "/products/prod-19-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Design esportivo autêntico com blocos de cor verde floresta e azul marinho. Tecido ultraleve e resistente ao vento, achado em Florianópolis.",
+    "measurements": {
+      "bust": "122 cm",
+      "waist": "116 cm",
+      "length": "70 cm",
+      "sleeve": "65 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 2800,
+      "co2AvoidedKg": 5.9
+    }
+  },
+  {
+    "id": "prod-20",
+    "name": "Jardineira Jeans Denim Claro",
+    "slug": "jardineira-jeans-denim-claro",
+    "categorySlug": "anos-90",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 230.0,
+    "originalPrice": 530.0,
+    "size": "P",
+    "condition": "Muito boa (Mínimos sinais de uso)",
+    "origin": "Gonzaga, Santos — SP",
+    "material": "100% Algodão Denim Macio",
+    "image": "/products/prod-20-1.jpg",
+    "gallery": [
+      "/products/prod-20-1.jpg",
+      "/products/prod-20-2.jpg",
+      "/products/prod-20-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Fivelas de latão dourado envelhecido e bolso frontal clássico de alfaiataria operária. Resgatada no litoral santista com lavagem clara descontraída.",
+    "measurements": {
+      "bust": "N/A",
+      "waist": "78 cm",
+      "length": "138 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 3700,
+      "co2AvoidedKg": 7.5
+    }
+  },
+  {
+    "id": "prod-21",
+    "name": "Camisa Flanela Xadrez Grunge",
+    "slug": "camisa-flanela-xadrez-grunge",
+    "categorySlug": "anos-90",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 175.0,
+    "originalPrice": 390.0,
+    "size": "G",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Batel, Curitiba — PR",
+    "material": "100% Algodão Flanelado Pesado",
+    "image": "/products/prod-21-1.jpg",
+    "gallery": [
+      "/products/prod-21-1.jpg",
+      "/products/prod-21-2.jpg",
+      "/products/prod-21-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Toque aveludado e caimento oversized característico do movimento grunge do início dos anos 90. Tecido encorpado que protege dos dias mais frios.",
+    "measurements": {
+      "bust": "116 cm",
+      "waist": "112 cm",
+      "length": "75 cm",
+      "sleeve": "64 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 2500,
+      "co2AvoidedKg": 5.2
+    }
+  },
+  {
+    "id": "prod-22",
+    "name": "Camisa em Linho Puro Areia",
+    "slug": "camisa-linho-puro-areia",
+    "categorySlug": "seda-linho",
+    "era": "Anos 80",
+    "stock": 1,
+    "price": 250.0,
+    "originalPrice": 570.0,
+    "size": "M",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Quadrado, Trancoso — BA",
+    "material": "100% Linho Puro e Botões de Coco",
+    "image": "/products/prod-22-1.jpg",
+    "gallery": [
+      "/products/prod-22-1.jpg",
+      "/products/prod-22-2.jpg",
+      "/products/prod-22-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Fibra de linho nobre respirável com botões artesanais de coco natural garimpada no Quadrado de Trancoso. Frescor impecável e sofisticação descomplicada.",
+    "measurements": {
+      "bust": "104 cm",
+      "waist": "98 cm",
+      "length": "71 cm",
+      "sleeve": "61 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 2600,
+      "co2AvoidedKg": 5.3
+    }
+  },
+  {
+    "id": "prod-23",
+    "name": "Kimono de Seda Pura Estampa Botânica",
+    "slug": "kimono-seda-pura-estampa-botanica",
+    "categorySlug": "seda-linho",
+    "era": "Anos 80",
+    "stock": 1,
+    "price": 360.0,
+    "originalPrice": 880.0,
+    "size": "M",
+    "condition": "Impecável (Como nova)",
+    "origin": "Manaus — AM",
+    "material": "100% Seda Pura Habotai",
+    "image": "/products/prod-23-1.jpg",
+    "gallery": [
+      "/products/prod-23-1.jpg",
+      "/products/prod-23-2.jpg",
+      "/products/prod-23-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Fluidez etérea em seda pura com ilustrações botânicas delicadas inspiradas na flora tropical, preservado impecavelmente em Manaus desde os anos 80.",
+    "measurements": {
+      "bust": "120 cm",
+      "waist": "120 cm",
+      "length": "95 cm",
+      "sleeve": "48 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 2900,
+      "co2AvoidedKg": 5.9
+    }
+  },
+  {
+    "id": "prod-24",
+    "name": "Calça Pantalona em Linho Rústico",
+    "slug": "calca-pantalona-linho-rustico",
+    "categorySlug": "seda-linho",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 280.0,
+    "originalPrice": 640.0,
+    "size": "P",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Tambaú, João Pessoa — PB",
+    "material": "100% Linho Rústico Cru",
+    "image": "/products/prod-24-1.jpg",
+    "gallery": [
+      "/products/prod-24-1.jpg",
+      "/products/prod-24-2.jpg",
+      "/products/prod-24-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Caimento fluido e imponente com pernas amplas e cós anatômico. Tecido natural com textura orgânica marcante garimpado na orla de João Pessoa.",
+    "measurements": {
+      "bust": "N/A",
+      "waist": "74 cm",
+      "length": "109 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 3000,
+      "co2AvoidedKg": 6.1
+    }
+  },
+  {
+    "id": "prod-25",
+    "name": "Vestido Midi em Seda Lavada Âmbar",
+    "slug": "vestido-midi-seda-lavada-ambar",
+    "categorySlug": "seda-linho",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 340.0,
+    "originalPrice": 790.0,
+    "size": "M",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Campina, Belém — PA",
+    "material": "100% Seda Pura Lavada com Toque Peletizado",
+    "image": "/products/prod-25-1.jpg",
+    "gallery": [
+      "/products/prod-25-1.jpg",
+      "/products/prod-25-2.jpg",
+      "/products/prod-25-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Acabamento peletizado fosco com tom âmbar luminoso e toque ultrassuave. Uma peça rara e elegante garimpada no tradicional bairro da Campina em Belém.",
+    "measurements": {
+      "bust": "96 cm",
+      "waist": "80 cm",
+      "length": "122 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 2700,
+      "co2AvoidedKg": 5.6
+    }
+  },
+  {
+    "id": "prod-26",
+    "name": "Cardigan Longo em Algodão Cru",
+    "slug": "cardigan-longo-algodao-cru",
+    "categorySlug": "minimalista",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 225.0,
+    "originalPrice": 520.0,
+    "size": "M",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Itaipava, Petrópolis — RJ",
+    "material": "100% Algodão Orgânico Cru",
+    "image": "/products/prod-26-1.jpg",
+    "gallery": [
+      "/products/prod-26-1.jpg",
+      "/products/prod-26-2.jpg",
+      "/products/prod-26-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Linhas puras sem fecho com trama canelada suave e caimento alongado até os joelhos. Traz a essência do luxo despretensioso da serra fluminense.",
+    "measurements": {
+      "bust": "106 cm",
+      "waist": "102 cm",
+      "length": "104 cm",
+      "sleeve": "60 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 2600,
+      "co2AvoidedKg": 5.5
+    }
+  },
+  {
+    "id": "prod-27",
+    "name": "Vestido Tubular Canelado Off-White",
+    "slug": "vestido-tubular-canelado-off-white",
+    "categorySlug": "minimalista",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 240.0,
+    "originalPrice": 560.0,
+    "size": "P",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Higienópolis, São Paulo — SP",
+    "material": "95% Algodão Cru e 5% Elastano Natural",
+    "image": "/products/prod-27-1.jpg",
+    "gallery": [
+      "/products/prod-27-1.jpg",
+      "/products/prod-27-2.jpg",
+      "/products/prod-27-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Silhueta coluna minimalista dos anos 90 que esculpe o corpo com extremo conforto e simplicidade poética. Peça icônica garimpada em Higienópolis.",
+    "measurements": {
+      "bust": "86 cm",
+      "waist": "70 cm",
+      "length": "126 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 2300,
+      "co2AvoidedKg": 4.9
+    }
+  },
+  {
+    "id": "prod-28",
+    "name": "Regata Minimalista em Linho Seco",
+    "slug": "regata-minimalista-linho-seco",
+    "categorySlug": "minimalista",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 140.0,
+    "originalPrice": 320.0,
+    "size": "P",
+    "condition": "Impecável (Como nova)",
+    "origin": "Praia do Canto, Vitória — ES",
+    "material": "100% Linho Puro Rústico",
+    "image": "/products/prod-28-1.jpg",
+    "gallery": [
+      "/products/prod-28-1.jpg",
+      "/products/prod-28-2.jpg",
+      "/products/prod-28-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Decote quadrado arquitetônico e cava reta impecável. Uma peça essencial para um guarda-roupa cápsula infinito garimpada em Vitória.",
+    "measurements": {
+      "bust": "90 cm",
+      "waist": "88 cm",
+      "length": "54 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 1800,
+      "co2AvoidedKg": 3.9
+    }
+  },
+  {
+    "id": "prod-29",
+    "name": "Saia Midi Evasê em Linho e Algodão",
+    "slug": "saia-midi-evase-linho-algodao",
+    "categorySlug": "minimalista",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 215.0,
+    "originalPrice": 490.0,
+    "size": "M",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Ponta Negra, Natal — RN",
+    "material": "60% Linho e 40% Algodão Cru",
+    "image": "/products/prod-29-1.jpg",
+    "gallery": [
+      "/products/prod-29-1.jpg",
+      "/products/prod-29-2.jpg",
+      "/products/prod-29-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Botoeira frontal em madrepérola e corte evasê com caimento impecável. Uma peça atemporal em tom areia garimpada no litoral potiguar.",
+    "measurements": {
+      "bust": "N/A",
+      "waist": "76 cm",
+      "length": "78 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 2400,
+      "co2AvoidedKg": 5.1
+    }
+  },
+  {
+    "id": "prod-30",
+    "name": "Jaqueta Minimalista Sarja Crua",
+    "slug": "jaqueta-minimalista-sarja-crua",
+    "categorySlug": "minimalista",
+    "era": "Anos 90",
+    "stock": 1,
+    "price": 290.0,
+    "originalPrice": 670.0,
+    "size": "G",
+    "condition": "Excelente (Sem avarias)",
+    "origin": "Centro, Campo Grande — MS",
+    "material": "100% Algodão Sarja Pesada Sem Tingimento",
+    "image": "/products/prod-30-1.jpg",
+    "gallery": [
+      "/products/prod-30-1.jpg",
+      "/products/prod-30-2.jpg",
+      "/products/prod-30-3.jpg"
+    ],
+    "hasStoryBadge": true,
+    "story": "Inspiração utilitária e minimalismo gráfico em sarja pesada natural. Botões em madeira nobre e bolsos quadrados perfeitamente simétricos.",
+    "measurements": {
+      "bust": "114 cm",
+      "waist": "108 cm",
+      "length": "69 cm",
+      "sleeve": "63 cm"
+    },
+    "impact": {
+      "waterSavedLiters": 3500,
+      "co2AvoidedKg": 7.3
     }
   }
 ]
